@@ -1,0 +1,4 @@
+baseURL = 'https://dverdonschot.github.io/'
+languageCode = 'en-us'
+title = 'Dverdonschot Github Page'
+theme = 'ananke'
