@@ -8,7 +8,7 @@ const SRC_DIR = './src';
 const DIST_DIR = './dist';
 const PUBLIC_DIR = './public';
 const SITE_URL = 'https://dverdonschot.github.io';
-const SITE_TITLE = 'dverdonschot';
+const SITE_TITLE = 'Dennis Verdonschot';
 const SITE_DESCRIPTION = 'Developer who loves building things for the web';
 
 // Configure marked for better output
