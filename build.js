@@ -341,6 +341,9 @@ async function build() {
   console.log('🗺️  Generating sitemap...');
   await generateSitemap(posts);
   
+  // Create .nojekyll file for GitHub Pages
+  await fs.writeFile(path.join(DIST_DIR, '.nojekyll'), '');
+  
   console.log('\n✨ Build complete! Output in ./dist/\n');
 }
 
