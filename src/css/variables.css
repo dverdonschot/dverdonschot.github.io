@@ -69,9 +69,9 @@
     --color-border: #334155;
     --color-code-bg: #1e293b;
     
-    /* Header colors - Option 2: Deep Teal */
-    --color-header-bg: #134e4a;
-    --color-header-border: #0f766e;
+    /* Header colors - Dark Cyan */
+    --color-header-bg: #164e63;
+    --color-header-border: #0e7490;
   }
 }
 
@@ -86,9 +86,9 @@
   --color-border: #334155;
   --color-code-bg: #1e293b;
   
-  /* Header colors - Option 2: Deep Teal */
-  --color-header-bg: #134e4a;
-  --color-header-border: #0f766e;
+  /* Header colors - Dark Cyan */
+  --color-header-bg: #164e63;
+  --color-header-border: #0e7490;
 }
 
 [data-theme="light"] {
