@@ -60,14 +60,14 @@
 /* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #0f172a;
-    --color-bg-secondary: #1e293b;
+    --color-bg: #0d1f26;
+    --color-bg-secondary: #14303a;
     --color-text: #f1f5f9;
     --color-text-secondary: #cbd5e1;
     --color-accent: #3b82f6;
     --color-accent-hover: #60a5fa;
-    --color-border: #334155;
-    --color-code-bg: #1e293b;
+    --color-border: #1e4652;
+    --color-code-bg: #14303a;
     
     /* Header colors - Dark Cyan */
     --color-header-bg: #164e63;
@@ -77,14 +77,14 @@
 
 /* Manual dark mode toggle */
 [data-theme="dark"] {
-  --color-bg: #0f172a;
-  --color-bg-secondary: #1e293b;
+  --color-bg: #0d1f26;
+  --color-bg-secondary: #14303a;
   --color-text: #f1f5f9;
   --color-text-secondary: #cbd5e1;
   --color-accent: #3b82f6;
   --color-accent-hover: #60a5fa;
-  --color-border: #334155;
-  --color-code-bg: #1e293b;
+  --color-border: #1e4652;
+  --color-code-bg: #14303a;
   
   /* Header colors - Dark Cyan */
   --color-header-bg: #164e63;
