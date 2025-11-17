@@ -233,6 +233,11 @@ async function generateBlogIndex(posts) {
   
   const html = template.replace('{{POSTS}}', postsHtml);
   await fs.writeFile(path.join(DIST_DIR, 'blog.html'), html);
+  
+  // Also create /blog/index.html for GitHub Pages routing
+  const blogDir = path.join(DIST_DIR, 'blog');
+  await ensureDir(blogDir);
+  await fs.writeFile(path.join(blogDir, 'index.html'), html);
 }
 
 // Generate home page with recent posts
@@ -282,6 +287,12 @@ async function copyStatic() {
       );
     }
   }
+  
+  // Copy about.html to /aboutme/index.html for GitHub Pages routing
+  const aboutmeDir = path.join(DIST_DIR, 'aboutme');
+  await ensureDir(aboutmeDir);
+  const aboutHtml = await fs.readFile(path.join(SRC_DIR, 'about.html'), 'utf-8');
+  await fs.writeFile(path.join(aboutmeDir, 'index.html'), aboutHtml);
   
   // Copy public assets if they exist
   try {
