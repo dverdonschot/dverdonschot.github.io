@@ -142,6 +142,22 @@ nav a:hover {
   color: var(--color-text);
 }
 
+.github-link {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.github-link:hover {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.github-link svg {
+  display: block;
+}
+
 /* Theme Toggle */
 .theme-toggle {
   background: none;
