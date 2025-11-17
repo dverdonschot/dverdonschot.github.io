@@ -86,9 +86,9 @@
   --color-border: #334155;
   --color-code-bg: #1e293b;
   
-  /* Header colors - Option 1: Deep Purple */
-  --color-header-bg: #2d1b4e;
-  --color-header-border: #4c3575;
+  /* Header colors - Option 2: Deep Teal */
+  --color-header-bg: #134e4a;
+  --color-header-border: #0f766e;
 }
 
 [data-theme="light"] {
