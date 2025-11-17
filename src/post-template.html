@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://dverdonschot.github.io/blog/{{SLUG}}.html">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{{TITLE}}">
+  <meta name="twitter:description" content="{{DESCRIPTION}}">
+  <title>{{TITLE}} - Dennis Verdonschot</title>
+  <link rel="stylesheet" href="/css/main.css?v=2.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+</head>
+<body>
+  <a href="#main-content" class="skip-to-content">Skip to content</a>
+  
+  <header class="site-header">
+    <div class="container">
+      <h1 class="site-title">
+        <a href="/">Dennis Verdonschot</a>
+      </h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/blog.html">Blog</a></li>
+          <li>
+            <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+              🌓
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <article class="container">
+      <div class="content">
+        <div class="post-header">
+          <h1>{{TITLE}}</h1>
+          <time datetime="{{DATE}}">{{DATE}}</time>{{READING_TIME}}
+          <div class="tags">
+            {{TAGS}}
+          </div>
+        </div>
+        
+        <div class="post-content">
+          {{CONTENT}}
+        </div>
+
+        <hr class="divider">
+        
+        <p class="text-center">
+          <a href="/blog.html">← Back to all posts</a>
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Dennis Verdonschot. Built with plain HTML, CSS, and JavaScript.</p>
+      <p>
+        <a href="https://github.com/dverdonschot" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/js/theme.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>
