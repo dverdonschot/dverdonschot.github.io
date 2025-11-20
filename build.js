@@ -5,6 +5,7 @@ import matter from 'gray-matter';
 
 const POSTS_DIR = './posts';
 const SRC_DIR = './src';
+const TEMPLATES_DIR = './src/templates';
 const DIST_DIR = './dist';
 const PUBLIC_DIR = './public';
 const SITE_URL = 'https://dverdonschot.github.io';
@@ -18,6 +19,43 @@ marked.setOptions({
   headerIds: true,
   mangle: false
 });
+
+// Load and cache templates
+let templatesCache = {};
+
+async function loadTemplate(name) {
+  if (!templatesCache[name]) {
+    templatesCache[name] = await fs.readFile(
+      path.join(TEMPLATES_DIR, `${name}.html`),
+      'utf-8'
+    );
+  }
+  return templatesCache[name];
+}
+
+// Build complete page with header and footer
+async function buildPage(contentTemplate, replacements) {
+  const header = await loadTemplate('header');
+  const footer = await loadTemplate('footer');
+
+  // Apply replacements to content template first
+  let content = contentTemplate;
+  for (const [key, value] of Object.entries(replacements)) {
+    content = content.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), value || '');
+  }
+
+  // Then insert header and footer
+  content = content
+    .replace(/\{\{HEADER\}\}/g, header)
+    .replace(/\{\{FOOTER\}\}/g, footer);
+
+  // Finally apply replacements to the complete page (for header/footer placeholders)
+  for (const [key, value] of Object.entries(replacements)) {
+    content = content.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), value || '');
+  }
+
+  return content;
+}
 
 // Calculate reading time (average 200 words per minute)
 function calculateReadingTime(text) {
@@ -176,31 +214,39 @@ ${urls}
 
 // Generate a blog post page
 async function generatePostPage(post) {
-  const template = await fs.readFile(path.join(SRC_DIR, 'post-template.html'), 'utf-8');
-  
+  const template = await loadTemplate('post');
+
   const dateFormatted = new Date(post.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   });
-  
-  const tagsHtml = post.tags.map(tag => 
+
+  const tagsHtml = post.tags.map(tag =>
     `<span class="tag">${tag}</span>`
   ).join('');
 
-  const readingTimeHtml = post.readingTime > 0 
-    ? ` <span class="text-secondary">· ${post.readingTime} min read</span>` 
+  const readingTimeHtml = post.readingTime > 0
+    ? ` <span class="text-secondary">· ${post.readingTime} min read</span>`
     : '';
-  
-  const html = template
-    .replace('{{TITLE}}', post.title)
-    .replace('{{DATE}}', dateFormatted)
-    .replace('{{TAGS}}', tagsHtml)
-    .replace('{{CONTENT}}', post.html)
-    .replace('{{DESCRIPTION}}', post.description)
-    .replace('{{SLUG}}', post.slug)
-    .replace('{{READING_TIME}}', readingTimeHtml);
-  
+
+  const html = await buildPage(template, {
+    TITLE: post.title,
+    DATE: dateFormatted,
+    TAGS: tagsHtml,
+    CONTENT: post.html,
+    DESCRIPTION: post.description,
+    SLUG: post.slug,
+    READING_TIME: readingTimeHtml,
+    META_DESCRIPTION: post.description,
+    META_TITLE: post.title,
+    PAGE_TITLE: `${post.title} - Dennis Verdonschot`,
+    PAGE_URL: `blog/${post.slug}.html`,
+    OG_TYPE: 'article',
+    EXTRA_CSS: '\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">',
+    EXTRA_SCRIPTS: '\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>\n  <script>hljs.highlightAll();</script>'
+  });
+
   const postDir = path.join(DIST_DIR, 'blog');
   await ensureDir(postDir);
   await fs.writeFile(path.join(postDir, `${post.slug}.html`), html);
