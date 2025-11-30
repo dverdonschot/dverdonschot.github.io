@@ -8,6 +8,7 @@ const SRC_DIR = './src';
 const TEMPLATES_DIR = './src/templates';
 const DIST_DIR = './dist';
 const PUBLIC_DIR = './public';
+const IMAGES_DIR = './images';
 const SITE_URL = 'https://dverdonschot.github.io';
 const SITE_TITLE = 'Dennis Verdonschot';
 const SITE_DESCRIPTION = 'Developer who loves building things for the web';
@@ -125,6 +126,8 @@ async function parsePost(relativePath) {
     date: data.date || new Date(),
     description: data.description || '',
     tags: data.tags || [],
+    image: data.image || '',
+    imageAlt: data.imageAlt || '',
     html,
     readingTime,
     filename: relativePath
@@ -230,6 +233,14 @@ async function generatePostPage(post) {
     ? ` <span class="text-secondary">· ${post.readingTime} min read</span>`
     : '';
 
+  const heroImageHtml = post.image
+    ? `
+        <div class="post-hero-image">
+          <img src="${post.image}" alt="${post.imageAlt}" loading="lazy">
+        </div>
+      `
+    : '';
+
   const html = await buildPage(template, {
     TITLE: post.title,
     DATE: dateFormatted,
@@ -238,6 +249,7 @@ async function generatePostPage(post) {
     DESCRIPTION: post.description,
     SLUG: post.slug,
     READING_TIME: readingTimeHtml,
+    HERO_IMAGE: heroImageHtml,
     META_DESCRIPTION: post.description,
     META_TITLE: post.title,
     PAGE_TITLE: `${post.title} - Dennis Verdonschot`,
@@ -267,12 +279,23 @@ async function generateBlogIndex(posts) {
       `<span class="tag">${tag}</span>`
     ).join('');
     
+    const imageHtml = post.image
+      ? `
+        <div class="post-card-image">
+          <img src="${post.image}" alt="${post.imageAlt}" loading="lazy">
+        </div>
+      `
+      : '';
+    
     return `
       <article class="post-card">
-        <h2><a href="/blog/${post.slug}.html">${post.title}</a></h2>
-        <time datetime="${post.date}">${dateFormatted}</time> · ${post.readingTime} min read
-        ${post.description ? `<p class="description">${post.description}</p>` : ''}
-        <div class="tags">${tagsHtml}</div>
+        ${imageHtml}
+        <div class="post-card-content">
+          <h2><a href="/blog/${post.slug}.html">${post.title}</a></h2>
+          <time datetime="${post.date}">${dateFormatted}</time> · ${post.readingTime} min read
+          ${post.description ? `<p class="description">${post.description}</p>` : ''}
+          <div class="tags">${tagsHtml}</div>
+        </div>
       </article>
     `;
   }).join('\n') : '<p>No posts yet. Write your first post in the <code>posts/</code> directory!</p>';
@@ -302,12 +325,23 @@ async function generateHomePage(posts) {
       `<span class="tag">${tag}</span>`
     ).join('');
     
+    const imageHtml = post.image
+      ? `
+        <div class="post-card-image">
+          <img src="${post.image}" alt="${post.imageAlt}" loading="lazy">
+        </div>
+      `
+      : '';
+    
     return `
       <article class="post-card">
-        <h2><a href="/blog/${post.slug}.html">${post.title}</a></h2>
-        <time datetime="${post.date}">${dateFormatted}</time> · ${post.readingTime} min read
-        ${post.description ? `<p class="description">${post.description}</p>` : ''}
-        <div class="tags">${tagsHtml}</div>
+        ${imageHtml}
+        <div class="post-card-content">
+          <h2><a href="/blog/${post.slug}.html">${post.title}</a></h2>
+          <time datetime="${post.date}">${dateFormatted}</time> · ${post.readingTime} min read
+          ${post.description ? `<p class="description">${post.description}</p>` : ''}
+          <div class="tags">${tagsHtml}</div>
+        </div>
       </article>
     `;
   }).join('\n') : '<p>No posts yet. Write your first post in the <code>posts/</code> directory!</p>';
@@ -345,6 +379,14 @@ async function copyStatic() {
     await copyDir(PUBLIC_DIR, path.join(DIST_DIR, 'assets'));
   } catch (err) {
     console.log('No public directory found, skipping assets copy');
+  }
+  
+  // Copy images directory to dist/images
+  try {
+    await copyDir(IMAGES_DIR, path.join(DIST_DIR, 'images'));
+    console.log('   ✓ Copied images directory');
+  } catch (err) {
+    console.log('No images directory found, skipping images copy');
   }
 }
 
