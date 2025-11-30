@@ -2,6 +2,8 @@
 title: Building a Static Site with GitHub Actions
 date: 2025-11-17
 tags: [web, automation, github]
+image: /images/blog/2025/building-static-site-hero-min.jpg
+imageAlt: GitHub Actions workflow diagram showing automated build and deployment pipeline
 description: How I automated my blog deployment using GitHub Actions and markdown.
 ---
 

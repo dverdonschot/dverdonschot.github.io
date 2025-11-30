@@ -3,6 +3,8 @@ title: My First Blog Post
 date: 2025-11-16
 tags: [meta, writing]
 description: Getting started with my new blog and what to expect.
+image: /images/blog/2025/my-first-post-hero-min.jpg
+imageAlt: A welcoming workspace with a laptop and notebook, representing the beginning of a new blogging journey
 ---
 
 # My First Blog Post

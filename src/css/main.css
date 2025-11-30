@@ -383,3 +383,110 @@ main {
 }
 
 /* Code highlighting will be done by highlight.js */
+
+/* Post Card with Image Support */
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.post-card-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: var(--color-bg-secondary);
+}
+
+.post-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-base);
+}
+
+.post-card:hover .post-card-image img {
+  transform: scale(1.05);
+}
+
+.post-card-content {
+  padding: var(--space-xl);
+  flex: 1;
+}
+
+.post-card-content h2 {
+  margin-bottom: var(--space-sm);
+}
+
+.post-card-content time {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.post-card-content .description {
+  color: var(--color-text);
+  font-weight: 500;
+  margin-bottom: var(--space-sm);
+}
+
+.post-card-content .excerpt {
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-base);
+}
+
+.post-card-content .tags {
+  margin-top: var(--space-md);
+}
+
+/* Hero Image for Individual Posts */
+.post-hero-image {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto var(--space-2xl);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  background-color: var(--color-bg-secondary);
+}
+
+.post-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsive adjustments for cards with images */
+@media (max-width: 768px) {
+  .post-card-content {
+    padding: var(--space-lg);
+  }
+  
+  .post-card-image {
+    aspect-ratio: 16 / 10;
+  }
+  
+  .post-hero-image {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* Card without image (fallback) */
+.post-card:not(:has(.post-card-image)) {
+  padding: var(--space-xl);
+}
+
+.post-card:not(:has(.post-card-image)) .post-card-content {
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .post-card:not(:has(.post-card-image)) {
+    padding: var(--space-lg);
+  }
+}
