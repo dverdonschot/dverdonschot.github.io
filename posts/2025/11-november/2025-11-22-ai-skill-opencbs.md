@@ -3,6 +3,8 @@ title: Building an AI Skill to Analyze Datasets on CBS Open Data
 date: 2025-11-22
 description: Get answers to your questions based on open Dutch Government data.
 tags: [AI Skill, Open Data, CBS]
+image: /images/blog/2025/cbsoanalyze-hero-min.jpg
+imageAlt: Dashboard visualization showing CBS Open Data analysis with charts and statistics about Dutch demographic and economic trends
 ---
 
 # AI Skills Project: OpenCBS
