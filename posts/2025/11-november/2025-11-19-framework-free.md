@@ -3,6 +3,8 @@ title: Why I Chose a Framework-Free Approach
 date: 2025-11-19
 description: Thoughts on building without JavaScript frameworks
 tags: [web, opinion, javascript]
+image: /images/blog/2025/framework-free-hero-min.jpg
+imageAlt: Minimalist code editor showing clean HTML and CSS without framework dependencies
 ---
 
 # Why I Chose a Framework-Free Approach
