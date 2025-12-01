@@ -79,7 +79,7 @@ The AI can do all of this autonomously when you invoke the skill.
 
 ## Volume Mounting: The Game Changer
 
-One of my favorite features is volume mounting. This lets you edit code with your preferred IDE (VSCode, Zed, etc.) while the AI runs it in the container:
+With volume mounting you can edit code with your preferred IDE (VSCode, Zed, etc.) while the AI runs it in the container:
 
 ```bash
 # Mount local directory into container
@@ -95,16 +95,15 @@ Now you can:
 
 It's like having the safety of containers with the convenience of local development.
 
-## Security First
+## Git authorizations
 
-The skill enforces strict security practices:
+One way you can work with container-sandboxes is by letting it download code from your code repository. 
+
+When initially trying to use container-sandboxes with ssh I noticed how powerfull this was and decided to block the AI from going to .ssh folder.
+
+My advice is to make a github token for your repository, that way it can only read and push to 1 repository over https, limiting the scope ofwhat it can do.
 
 - **No SSH access**: All git operations use tokens (HTTPS)
-- **Ephemeral by default**: Sandboxes timeout after 30 minutes
-- **Isolated networking**: Containers can't access your host files unless explicitly mounted
-- **No credential exposure**: SSH keys and sensitive files are protected
-
-This means you can have AI work on experimental code without worrying about security risks.
 
 ## Multiple Runtimes
 
@@ -160,17 +159,6 @@ uv pip install -e .
 ```
 
 Full documentation is available in the [skill repository](https://github.com/dverdonschot/claude-code-ai-skills/tree/main/.claude/skills/container-sandboxes).
-
-## The Future of AI-Assisted Development
-
-Container sandboxes represent a shift in how we think about AI-assisted development. Instead of having AI write code directly into our projects, we can have it:
-
-- Experiment in safe environments
-- Build complete prototypes autonomously
-- Test risky changes without consequences
-- Compare multiple approaches in parallel
-
-The container becomes a playground where AI can explore freely, and you cherry-pick the results you want to keep.
 
 ## Best Practices
 
