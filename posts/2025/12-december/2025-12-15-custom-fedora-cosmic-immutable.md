@@ -55,17 +55,9 @@ The image includes my essential development stack:
 
 Everything I need is present on first boot. No more running through a setup checklist on new machines.
 
-### AMD GPU Optimizations
+## Weekly Rebuilds: Staying Fresh and Secure
 
-For AMD graphics users, the image automatically applies kernel parameters that improve GPU stability and recovery. No manual grub configuration needed - it just works.
-
-### Bonus: COSMIC Vimified (In Progress)
-
-I'm also developing "COSMIC Vimified," a keyboard-driven hint navigation system inspired by browser vim extensions. The goal is mouseless GUI interaction across the entire desktop. It's still in the planning phase, but the foundation is being built into the image.
-
-## Weekly Rebuilds: Always Fresh, Always Secure
-
-Here's where it gets powerful: **my image rebuilds automatically every week** via GitHub Actions.
+One of the best parts of this setup is that **my image rebuilds automatically every week** via GitHub Actions.
 
 Each rebuild:
 1. Pulls the latest Fedora Silverblue base
@@ -84,15 +76,47 @@ This means:
 
 ## The Developer Experience
 
-As a developer, this setup is liberating:
+As a developer, this setup has been pretty liberating:
 
 **Clean separation of concerns**: My system stays pristine. Development dependencies live in containers, toolboxes, or layered on top. The base OS never gets polluted.
 
-**Fearless experimentation**: Want to test a new tool? Spin up a toolbox or container. Don't like it? Delete it. The base system is untouched.
+**Fearless experimentation**: Testing a new tool? Spin up a toolbox or container. If it doesn't work out, just delete it. The base system stays untouched.
 
-**Disaster recovery**: New machine? Just `rpm-ostree rebase` to my image URL, reboot, and I'm up and running with my entire environment in minutes.
+**Disaster recovery**: Setting up a new machine is mostly just rebasing to my image URL and rebooting. I'm usually up and running with my entire environment in minutes.
+
+## Configuration Management with YADM
+
+While the immutable base system handles the OS layer, I use [YADM](https://yadm.io/) (Yet Another Dotfiles Manager) to manage my user configuration files in version control. My setup is available at [cosmic-yadm](https://github.com/dverdonschot/cosmic-yadm).
+
+YADM is a wrapper around Git that's designed specifically for managing dotfiles in your home directory. It lets you:
+
+- **Version control your configurations**: All your shell configs, editor settings, and application preferences tracked in Git
+- **Sync across machines**: Clone your dotfiles repository on a new machine and instantly have your customized environment
+- **Selective deployment**: Use alternate files and templates to handle machine-specific configurations
+
+The combination of an immutable OS image and version-controlled dotfiles means I can go from bare metal to fully configured development environment in under 30 minutes:
+
+1. Install Fedora Silverblue (or rebase to my custom image)
+2. Clone my cosmic-yadm repository with `yadm clone https://github.com/dverdonschot/cosmic-yadm.git`
+3. Reboot into my custom environment with all my tools and settings
+
+This separation of concerns is elegant: the OS image handles system-level packages and configuration, while YADM handles user-level customization. Neither steps on the other's toes.
 
 ## Getting Started with BlueBuild
+
+If you want to try my specific image on a new machine:
+
+**Unsigned (for testing):**
+```bash
+rpm-ostree rebase ostree-unverified-registry:ghcr.io/dverdonschot/fedora-cosmic-atomic-ewt:latest
+```
+
+**Signed (recommended for production use):**
+```bash
+rpm-ostree rebase ostree-image-signed:docker://ghcr.io/dverdonschot/fedora-cosmic-atomic-ewt:latest
+```
+
+Then reboot to switch to the new image.
 
 If you want to build your own custom image:
 
@@ -107,16 +131,16 @@ If you want to build your own custom image:
 
 Updates happen automatically from that point forward.
 
-## Why This Matters
+## Why This Works for Me
 
-Operating systems should be reliable infrastructure, not something you constantly maintain. Immutable Linux with automated rebuilds delivers that promise.
+I've come to think that operating systems should be reliable infrastructure, not something you constantly maintain. Immutable Linux with automated rebuilds gets pretty close to that ideal.
 
-My Fedora Cosmic image means:
+For me, this Fedora Cosmic setup means:
 - I spend less time on system maintenance
 - My environment is reproducible across machines
 - Updates happen reliably in the background
 - I can experiment without fear of breaking things
 
-If you're tired of traditional package management or want to try COSMIC desktop on a rock-solid base, check out [fedora-cosmic-atomic-ewt](https://github.com/dverdonschot/fedora-cosmic-atomic-ewt). Fork it, customize it, make it yours.
+If you're interested in trying this approach, my [fedora-cosmic-atomic-ewt](https://github.com/dverdonschot/fedora-cosmic-atomic-ewt) repository is public. You can use it as-is or fork it as a starting point for your own setup.
 
-The future of Linux desktops is immutable, declarative, and automated. And it's available today.
+Immutable, declarative, and automated Linux desktops are becoming more practical every day. This setup has worked well for me, and it might work for you too.
