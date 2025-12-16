@@ -7,8 +7,6 @@ image: /images/blog/2025/immutable-linux-hero-min.jpg
 imageAlt: Illustration of immutable Linux build process showing BlueBuild robot, frozen COSMIC desktop images on conveyor belt, Rebuild-O-Matic 3000 weekly automation, with fresh builds replacing old crusty versions
 ---
 
-# Building My Custom Fedora Cosmic Desktop with BlueBuild
-
 For the past few months, I've been running a custom Fedora Silverblue image with the COSMIC desktop environment, and it's transformed how I think about operating system maintenance. No more manual updates, no more dependency conflicts, and no more "it worked yesterday" mysteries.
 
 My custom image is built with [BlueBuild](https://blue-build.org/), automatically rebuilt weekly, and distributed as a container image. You can check it out at [fedora-cosmic-atomic-ewt](https://github.com/dverdonschot/fedora-cosmic-atomic-ewt).

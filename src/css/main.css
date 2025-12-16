@@ -490,3 +490,24 @@ main {
     padding: var(--space-lg);
   }
 }
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg);
+  padding: var(--space-sm) 0;
+}
+
+.breadcrumb a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb span {
+  color: var(--color-text-secondary);
+}

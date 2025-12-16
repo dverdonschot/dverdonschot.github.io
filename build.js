@@ -241,6 +241,81 @@ async function generatePostPage(post) {
       `
     : '';
 
+  // Generate ISO 8601 date strings for article metadata
+  const publishedTime = new Date(post.date).toISOString();
+  const modifiedTime = publishedTime; // Use published time as modified time for now
+
+  // Generate article metadata tags
+  const articleMetaHtml = `<meta property="article:published_time" content="${publishedTime}">
+  <meta property="article:modified_time" content="${modifiedTime}">
+  <meta property="article:author" content="Dennis Verdonschot">
+  <meta property="article:section" content="Technology">
+  ${post.tags.map(tag => `<meta property="article:tag" content="${tag}">`).join('\n  ')}`;
+
+  // Generate Open Graph image with full URL
+  const ogImageUrl = post.image
+    ? `${SITE_URL}${post.image}`
+    : `${SITE_URL}/images/default-og-image.jpg`;
+
+  // Generate JSON-LD structured data for article
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.description,
+    "image": post.image ? `${SITE_URL}${post.image}` : undefined,
+    "datePublished": publishedTime,
+    "dateModified": modifiedTime,
+    "author": {
+      "@type": "Person",
+      "name": "Dennis Verdonschot",
+      "url": SITE_URL
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Dennis Verdonschot",
+      "url": SITE_URL
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/blog/${post.slug}.html`
+    },
+    "keywords": post.tags.join(', ')
+  };
+
+  // Generate breadcrumb JSON-LD
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": SITE_URL
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": `${SITE_URL}/blog.html`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": post.title,
+        "item": `${SITE_URL}/blog/${post.slug}.html`
+      }
+    ]
+  };
+
+  const jsonLdHtml = `<script type="application/ld+json">
+${JSON.stringify(jsonLd, null, 2)}
+  </script>
+  <script type="application/ld+json">
+${JSON.stringify(breadcrumbJsonLd, null, 2)}
+  </script>`;
+
   const html = await buildPage(template, {
     TITLE: post.title,
     DATE: dateFormatted,
@@ -255,6 +330,9 @@ async function generatePostPage(post) {
     PAGE_TITLE: `${post.title} - Dennis Verdonschot`,
     PAGE_URL: `blog/${post.slug}.html`,
     OG_TYPE: 'article',
+    OG_IMAGE: ogImageUrl,
+    ARTICLE_META: articleMetaHtml,
+    JSON_LD: jsonLdHtml,
     EXTRA_CSS: '\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">',
     EXTRA_SCRIPTS: '\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>\n  <script>hljs.highlightAll();</script>'
   });
