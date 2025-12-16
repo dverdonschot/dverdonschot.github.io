@@ -7,8 +7,6 @@ image: /images/blog/2025/my-first-post-hero-min.jpg
 imageAlt: A welcoming workspace with a laptop and notebook, representing the beginning of a new blogging journey
 ---
 
-# My First Blog Post
-
 Welcome to my blog! I've been meaning to start writing for a while now, and I finally got around to setting this up.
 
 ## Why I'm Starting a Blog

@@ -7,8 +7,6 @@ image: /images/blog/2025/container-sandbox-hero.jpg
 imageAlt: Visualization of containerized development environments showing isolated Docker containers for safe AI-driven code execution
 ---
 
-# AI Skills Project: Container Sandboxes
-
 After building the [CBS Open Data analyzer](/posts/2025/11-november/2025-11-22-ai-skill-opencbs.html), I wanted to create something that would enable AI assistants to safely develop and test applications without touching my local environment. Enter container sandboxes.
 
 The container-sandbox skill enables Claude (or any AI assistant) to spin up isolated Docker or Podman containers, develop proof-of-concept applications entirely within them, and even host the results - all without affecting your local machine.

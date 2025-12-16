@@ -7,8 +7,6 @@ image: /images/blog/2025/cbsoanalyze-hero-min.jpg
 imageAlt: Dashboard visualization showing CBS Open Data analysis with charts and statistics about Dutch demographic and economic trends
 ---
 
-# AI Skills Project: OpenCBS
-
 After watching [IndyDevDan](https://www.youtube.com/channel/UC_x36zCEGilGpB1m-V4gmjg) create an AI Skill to analyze Polymarket in his video [Why are top engineers DITCHING MCP Servers?](https://youtu.be/OIKTsVjTVJE), I was inspired to build something similar for Dutch government data.
 
 My goal was to create an AI Skill that analyzes datasets from [CBS Open Data](https://opendata.cbs.nl/portal.html?_la=nl&_catalog=CBS) (Centraal Bureau voor de Statistiek - the Dutch national statistics office).

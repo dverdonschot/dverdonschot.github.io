@@ -7,8 +7,6 @@ image: /images/blog/2025/framework-free-hero-min.jpg
 imageAlt: Minimalist code editor showing clean HTML and CSS without framework dependencies
 ---
 
-# Why I Chose a Framework-Free Approach
-
 After years of working with various JavaScript frameworks, I decided to build my personal site without any of them. Here's why.
 
 ## The Framework Fatigue is Real

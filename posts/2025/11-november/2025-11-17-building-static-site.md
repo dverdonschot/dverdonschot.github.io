@@ -7,8 +7,6 @@ imageAlt: GitHub Actions workflow diagram showing automated build and deployment
 description: How I automated my blog deployment using GitHub Actions and markdown.
 ---
 
-# Building a Static Site with GitHub Actions
-
 I recently rebuilt my personal site to be as simple as possible while still supporting Markdown for blog posts. Here's how I did it.
 
 ## The Goal
