@@ -2,6 +2,10 @@ import fs from 'fs/promises';
 import path from 'path';
 import { marked } from 'marked';
 import matter from 'gray-matter';
+import NostrPublisher from './nostr-publisher.js';
+import { getPublicKey } from 'nostr-tools/pure';
+import { npubEncode } from 'nostr-tools/nip19';
+import 'dotenv/config';
 
 const POSTS_DIR = './posts';
 const SRC_DIR = './src';
@@ -12,6 +16,18 @@ const IMAGES_DIR = './images';
 const SITE_URL = 'https://dverdonschot.github.io';
 const SITE_TITLE = 'Dennis Verdonschot';
 const SITE_DESCRIPTION = 'Developer who loves building things for the web';
+
+// Generate Nostr identity link if configured
+let NOSTR_LINK = '';
+if (process.env.NOSTR_PRIVATE_KEY) {
+  try {
+    const publicKey = getPublicKey(process.env.NOSTR_PRIVATE_KEY);
+    const npub = npubEncode(publicKey);
+    NOSTR_LINK = ` · <a href="https://primal.net/p/${npub}" target="_blank" rel="noopener noreferrer" title="Follow me on Nostr">Nostr</a>`;
+  } catch (error) {
+    console.warn('⚠️  Could not generate Nostr link:', error.message);
+  }
+}
 
 // Configure marked for better output
 marked.setOptions({
@@ -129,8 +145,11 @@ async function parsePost(relativePath) {
     image: data.image || '',
     imageAlt: data.imageAlt || '',
     html,
+    markdown,  // Preserve original markdown for Nostr
     readingTime,
-    filename: relativePath
+    filename: relativePath,
+    nostr: data.nostr,      // Per-post Nostr publishing control
+    nostrDate: data.nostrDate  // Override Nostr publish date
   };
 }
 
@@ -213,6 +232,48 @@ ${urls}
 </urlset>`;
 
   await fs.writeFile(path.join(DIST_DIR, 'sitemap.xml'), sitemap);
+}
+
+// Publish posts to Nostr
+async function publishToNostr(posts) {
+  console.log('📡 Publishing to Nostr...');
+
+  try {
+    const publisher = new NostrPublisher();
+
+    if (!publisher.enabled) {
+      console.log('   ⊘ Nostr publishing disabled');
+      return;
+    }
+
+    const results = await publisher.publishPosts(posts);
+
+    const successful = results.filter(r => r.success).length;
+    const failed = results.filter(r => !r.success && !r.skipped).length;
+    const skipped = results.filter(r => r.skipped).length;
+
+    if (successful > 0) {
+      console.log(`   ✓ Published: ${successful} post${successful !== 1 ? 's' : ''}`);
+      results.filter(r => r.success).forEach(r => {
+        console.log(`     - ${r.post} (${r.relays.success}/${r.relays.total} relays)`);
+      });
+    }
+
+    if (skipped > 0) {
+      console.log(`   ⊘ Skipped: ${skipped} post${skipped !== 1 ? 's' : ''}`);
+    }
+
+    if (failed > 0) {
+      console.log(`   ✗ Failed: ${failed} post${failed !== 1 ? 's' : ''}`);
+      results.filter(r => !r.success && !r.skipped).forEach(r => {
+        console.log(`     - ${r.post}: ${r.error}`);
+      });
+    }
+
+    await publisher.close();
+  } catch (error) {
+    console.error('   ✗ Nostr publishing error:', error.message);
+  }
 }
 
 // Generate a blog post page
@@ -333,6 +394,7 @@ ${JSON.stringify(breadcrumbJsonLd, null, 2)}
     OG_IMAGE: ogImageUrl,
     ARTICLE_META: articleMetaHtml,
     JSON_LD: jsonLdHtml,
+    NOSTR_LINK: NOSTR_LINK,
     EXTRA_CSS: '\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">\n  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">',
     EXTRA_SCRIPTS: '\n  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>\n  <script>hljs.highlightAll();</script>'
   });
@@ -378,7 +440,9 @@ async function generateBlogIndex(posts) {
     `;
   }).join('\n') : '<p>No posts yet. Write your first post in the <code>posts/</code> directory!</p>';
   
-  const html = template.replace('{{POSTS}}', postsHtml);
+  const html = template
+    .replace('{{POSTS}}', postsHtml)
+    .replace(/\{\{NOSTR_LINK\}\}/g, NOSTR_LINK);
   await fs.writeFile(path.join(DIST_DIR, 'blog.html'), html);
   
   // Also create /blog/index.html for GitHub Pages routing
@@ -424,7 +488,9 @@ async function generateHomePage(posts) {
     `;
   }).join('\n') : '<p>No posts yet. Write your first post in the <code>posts/</code> directory!</p>';
   
-  const html = template.replace('{{RECENT_POSTS}}', recentPostsHtml);
+  const html = template
+    .replace('{{RECENT_POSTS}}', recentPostsHtml)
+    .replace(/\{\{NOSTR_LINK\}\}/g, NOSTR_LINK);
   await fs.writeFile(path.join(DIST_DIR, 'index.html'), html);
 }
 
@@ -506,10 +572,13 @@ async function build() {
   // Generate sitemap
   console.log('🗺️  Generating sitemap...');
   await generateSitemap(posts);
-  
+
+  // Publish to Nostr
+  await publishToNostr(posts);
+
   // Create .nojekyll file for GitHub Pages
   await fs.writeFile(path.join(DIST_DIR, '.nojekyll'), '');
-  
+
   console.log('\n✨ Build complete! Output in ./dist/\n');
 }
 

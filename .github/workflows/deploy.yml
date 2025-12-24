@@ -35,6 +35,12 @@ jobs:
 
       - name: Build site
         run: npm run build
+        env:
+          NOSTR_PRIVATE_KEY: ${{ secrets.NOSTR_PRIVATE_KEY }}
+          NOSTR_RELAYS: wss://relay.damus.io,wss://nos.lol,wss://relay.nostr.band
+          NOSTR_PUBLISH_ENABLED: ${{ secrets.NOSTR_PUBLISH_ENABLED || 'false' }}
+          NOSTR_REPUBLISH_ON_UPDATE: true
+          NOSTR_DEFAULT_BEHAVIOR: opt-in
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
