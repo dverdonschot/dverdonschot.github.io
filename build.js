@@ -9,7 +9,7 @@ const TEMPLATES_DIR = './src/templates';
 const DIST_DIR = './dist';
 const PUBLIC_DIR = './public';
 const IMAGES_DIR = './images';
-const SITE_URL = 'https://dverdonschot.github.io';
+const SITE_URL = 'https://dennis-verdonschot.nl';
 const SITE_TITLE = 'Dennis Verdonschot';
 const SITE_DESCRIPTION = 'Developer who loves building things for the web';
 
