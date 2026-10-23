@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Radar — issue 2026-W43</title>
+<meta name="description" content="A weekly overview of the AI models available: which one to use for which job, what it costs, and what is new.">
+<!-- The design tokens and the site stylesheet come from the main site,
+     so the colours live in exactly one place:
+     dennis-verdonschot.nl/css/variables.css. Only the report-specific
+     layout is defined here. -->
+<link rel="stylesheet" href="https://dennis-verdonschot.nl/css/variables.css">
+<link rel="stylesheet" href="https://dennis-verdonschot.nl/css/main.css">
+<link rel="stylesheet" href="..&#x2F;assets/radar.css">
+</head>
+<body>
+<a href="#main-content" class="skip-to-content">Skip to content</a>
+
+<header class="site-header">
+  <div class="container">
+    <h1 class="site-title">
+      <a href="https://dennis-verdonschot.nl/">Dennis Verdonschot</a>
+    </h1>
+    <nav>
+      <ul>
+        <li><a href="https://dennis-verdonschot.nl/">Home</a></li>
+        <li><a href="https://dennis-verdonschot.nl/blog.html">Blog</a></li>
+        <li><a href="https://dennis-verdonschot.nl/ai-radar/">AI Radar</a></li>
+        <li><a href="https://typetutor.org/">Typetutor</a></li>
+        <li>
+          <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">&#127769;&#127773;</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content" class="container radar">
+
+
+<div class="radar-hero">
+  <h1>AI Radar</h1>
+  <p class="tagline">A weekly overview of the AI models available: which one to use for
+     which job, what it costs, and what is new.</p>
+  
+    <p>This week, developments in the artificial intelligence space highlight new approaches to reasoning and multi-user agent access control. Operators should note that LLMs are increasingly being applied to scale formal software verification, while confidence scoring using language models continues to face skepticism. Keep an eye on these workflow integrations and agent frameworks as you evaluate your local deployment and security strategies.</p>
+  
+  <p class="issue">issue 2026-W43 &middot; generated 2026-10-23
+     &middot; 4 new models</p>
+</div>
+
+<section class="radar-section" id="quick">
+  <h2>The short answer <a class="anchor" href="#quick">#quick</a></h2>
+  <p class="sub">One pick per job: the best value model we found that is also popular
+     enough to be worth trusting.</p>
+  <table class="radar-table">
+    <thead>
+      <tr><th>Job</th><th>Model</th><th>Price</th><th>Why</th></tr>
+    </thead>
+    <tbody>
+      
+        
+        <tr>
+          <td data-label="Job">Cheap &amp; small (task routing)</td>
+          <td data-label="Model" class="who">
+            Xiaomi: MiMo-V2.6-Flash
+            <small>xiaomi&#x2F;mimo-v2.6-flash</small>
+          </td>
+          <td data-label="Price" class="price">
+            $0.168&#x2F;1M
+          </td>
+          <td data-label="Why" class="note">
+            xiaomi&#x2F;mimo-v2.6-flash is a strong open-weights option for homelab operators seeking a massive context window of 1.1M at a low price of $0.168&#x2F;1M blen…
+          </td>
+        </tr>
+        
+      
+        
+        <tr>
+          <td data-label="Job">Medium (real work &amp; coding)</td>
+          <td data-label="Model" class="who">
+            Qwen: Qwen3.7 Plus
+            <small>qwen&#x2F;qwen3.7-plus</small>
+          </td>
+          <td data-label="Price" class="price">
+            $0.512&#x2F;1M
+          </td>
+          <td data-label="Why" class="note">
+            qwen&#x2F;qwen3.7-plus is a cost-effective option in the medium tier, priced at $0.512 per 1M blended tokens with an arena rating of 1455. It is a solid ch…
+          </td>
+        </tr>
+        
+      
+        
+        <tr>
+          <td data-label="Job">Expensive (architecture)</td>
+          <td data-label="Model" class="who">
+            OpenAI: GPT-5.4
+            <small>openai&#x2F;gpt-5.4</small>
+          </td>
+          <td data-label="Price" class="price">
+            $5.00&#x2F;1M
+          </td>
+          <td data-label="Why" class="note">
+            OpenAI: GPT-5.4 is a top-tier frontier architecture that unifies Codex and GPT systems, delivering a massive 1.1M context window and an arena rating o…
+          </td>
+        </tr>
+        
+      
+        
+        <tr>
+          <td data-label="Job">Coding &amp; SWE agents</td>
+          <td data-label="Model" class="who">
+            Xiaomi: MiMo-V2.6-Flash
+            <small>xiaomi&#x2F;mimo-v2.6-flash</small>
+          </td>
+          <td data-label="Price" class="price">
+            $0.168&#x2F;1M
+          </td>
+          <td data-label="Why" class="note">
+            xiaomi&#x2F;mimo-v2.6-flash is a strong open-weights option for homelab operators seeking a massive context window of 1.1M at a low price of $0.168&#x2F;1M blen…
+          </td>
+        </tr>
+        
+      
+        
+        <tr>
+          <td data-label="Job">Out of the box (native tools)</td>
+          <td data-label="Model" class="who">
+            OpenAI: GPT-5.6 Luna
+            <small>openai&#x2F;gpt-5.6-luna</small>
+          </td>
+          <td data-label="Price" class="price">
+            $0.400&#x2F;1M
+          </td>
+          <td data-label="Why" class="note">
+            openai&#x2F;gpt-5.6-luna is a fast and cost-efficient option at $0.400&#x2F;1M blended tokens, making it well-suited for high-volume, latency-sensitive homelab …
+          </td>
+        </tr>
+        
+      
+        
+        <tr>
+          <td data-label="Job">Voice &amp; audio</td>
+          <td data-label="Model" class="who">
+            Google: Lyria 3 Pro Preview
+            <small>google&#x2F;lyria-3-pro-preview</small>
+          </td>
+          <td data-label="Price" class="price">
+            $0.08 per song
+          </td>
+          <td data-label="Why" class="note">
+            google&#x2F;lyria-3-pro-preview is part of Google&#x27;s Lyria 3 family of music generation models available through the Gemini API and is well suited for gener…
+          </td>
+        </tr>
+        
+      
+        
+        <tr>
+          <td data-label="Job">Open weights (self-hostable)</td>
+          <td data-label="Model" class="who">
+            Xiaomi: MiMo-V2.6-Flash
+            <small>xiaomi&#x2F;mimo-v2.6-flash</small>
+          </td>
+          <td data-label="Price" class="price">
+            $0.168&#x2F;1M
+          </td>
+          <td data-label="Why" class="note">
+            xiaomi&#x2F;mimo-v2.6-flash is a strong open-weights option for homelab operators seeking a massive context window of 1.1M at a low price of $0.168&#x2F;1M blen…
+          </td>
+        </tr>
+        
+      
+        
+        <tr>
+          <td data-label="Job">Image &amp; video</td>
+          <td data-label="Model" class="who">
+            Google: Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)
+            <small>google&#x2F;gemini-3.1-flash-lite-image</small>
+          </td>
+          <td data-label="Price" class="price">
+            $0.500&#x2F;1M
+          </td>
+          <td data-label="Why" class="note">
+            google&#x2F;gemini-3.1-flash-lite-image is Google&#x27;s fastest and most cost-efficient image model, priced at $0.500 per 1M blended tokens, making it well-sui…
+          </td>
+        </tr>
+        
+      
+    </tbody>
+  </table>
+</section>
+
+
+<section class="radar-section" id="router">
+  <h2>Cheap &amp; small (task routing) <a class="anchor" href="#router">#router</a></h2>
+  <p class="sub">Cheap enough to call on every step. Routing, classification, extraction, summarising.</p>
+  
+  <div class="radar-picks">
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#1</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;xiaomi&#x2F;mimo-v2.6-flash">Xiaomi: MiMo-V2.6-Flash</a></h3>
+      <div class="price-line">
+        
+          $0.168&#x2F;1M <span class="per-task">&middot; $0.00196 per task</span>
+        
+      </div>
+      
+      <p class="verdict">xiaomi&#x2F;mimo-v2.6-flash is a strong open-weights option for homelab operators seeking a massive context window of 1.1M at a low price of $0.168&#x2F;1M blended tokens. With an arena rating of 1452, it delivers solid performance for general self-hosted workloads, though its lower popularity score and specialized architecture mean it might not be worth the operational overhead if you do not strictly require its extensive context.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">10 providers</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1452</b></span>
+          <div class="radar-bar"><span style="width: 99%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>100</b></span>
+          <div class="radar-bar value"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>13.7k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 81%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#2</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;z-ai&#x2F;glm-5.3-flash">Z.ai: GLM 5.3 Flash</a></h3>
+      <div class="price-line">
+        
+          $0.220&#x2F;1M <span class="per-task">&middot; $0.00250 per task</span>
+        
+      </div>
+      
+      <p class="verdict">z-ai&#x2F;glm-5.3-flash stands out as an efficient open-weights choice for coding and long-horizon agent tasks, backed by a high arena rating of 1472 and a 1.0M context window. Priced reasonably at $0.220&#x2F;1M blended tokens and supported by 36 providers, it represents great value for homelab automation unless your specific use case avoids long-context agentic workflows.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">36 providers</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1472</b></span>
+          <div class="radar-bar"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>81</b></span>
+          <div class="radar-bar value"><span style="width: 81%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>38.4k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#3</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;google&#x2F;gemma-4-31b-it">Google: Gemma 4 31B</a></h3>
+      <div class="price-line">
+        
+          $0.240&#x2F;1M <span class="per-task">&middot; $0.00280 per task</span>
+        
+      </div>
+      
+      <p class="verdict">google&#x2F;gemma-4-31b-it offers a dense multimodal open-weights option with a configurable thinking mode and native function calling for $0.240&#x2F;1M blended tokens. While its 262K context window and 1425 arena rating make it a competent self-hosted assistant for image and text tasks, it is not worth the money if you need the million-token scale provided by other candidates.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">16 providers</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1425</b></span>
+          <div class="radar-bar"><span style="width: 97%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>70</b></span>
+          <div class="radar-bar value"><span style="width: 70%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>12.3k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 85%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+</section>
+
+<section class="radar-section" id="workhorse">
+  <h2>Medium (real work &amp; coding) <a class="anchor" href="#workhorse">#workhorse</a></h2>
+  <p class="sub">The models that do the actual work: writing, refactoring, debugging, agentic loops.</p>
+  
+  <div class="radar-picks">
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#1</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;qwen&#x2F;qwen3.7-plus">Qwen: Qwen3.7 Plus</a></h3>
+      <div class="price-line">
+        
+          $0.512&#x2F;1M <span class="per-task">&middot; $0.00576 per task</span>
+        
+      </div>
+      
+      <p class="verdict">qwen&#x2F;qwen3.7-plus is a cost-effective option in the medium tier, priced at $0.512 per 1M blended tokens with an arena rating of 1455. It is a solid choice for handling routine coding and real work tasks with its large 1M context window. However, with a popularity score of 40, it may not be worth the money if you require the absolute highest reasoning capabilities available in this category.</p>
+      
+      <div class="tags">
+        <span class="tag">mid-price</span><span class="tag">long context</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1455</b></span>
+          <div class="radar-bar"><span style="width: 98%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>100</b></span>
+          <div class="radar-bar value"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>42.1k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 97%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#2</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;xiaomi&#x2F;mimo-v2.6-pro">Xiaomi: MiMo-V2.6-Pro</a></h3>
+      <div class="price-line">
+        
+          $0.522&#x2F;1M <span class="per-task">&middot; $0.00609 per task</span>
+        
+      </div>
+      
+      <p class="verdict">xiaomi&#x2F;mimo-v2.6-pro stands out as a strong performer in this category, offering a high arena rating of 1491 for $0.522 per 1M blended tokens. It is well-suited for demanding real work and coding tasks backed by an expansive 1.1M context window across five providers. Despite a modest popularity score of 37, its strong benchmark performance makes it a compelling value for homelab operators needing advanced capabilities.</p>
+      
+      <div class="tags">
+        <span class="tag">mid-price</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">5 providers</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1491</b></span>
+          <div class="radar-bar"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>97</b></span>
+          <div class="radar-bar value"><span style="width: 97%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>4.1k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 90%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#3</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;google&#x2F;gemini-3.1-flash-lite-image">Google: Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)</a></h3>
+      <div class="price-line">
+        
+          $0.500&#x2F;1M <span class="per-task">&middot; $0.00550 per task</span>
+        
+      </div>
+      
+      <p class="verdict">google&#x2F;gemini-3.1-flash-lite-image is Google&#x27;s fastest and most cost-efficient image model, priced at $0.500 per 1M blended tokens, making it well-suited for high-velocity developer pipelines and rapid-fire visual exploration. With an arena rating of 1313, it is not worth the money if you require top-tier rendering quality for complex, high-fidelity visual production.</p>
+      
+      <div class="tags">
+        <span class="tag">mid-price</span><span class="tag">image out</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1313</b></span>
+          <div class="radar-bar"><span style="width: 88%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>95</b></span>
+          <div class="radar-bar value"><span style="width: 95%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>65.7k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+</section>
+
+<section class="radar-section" id="architect">
+  <h2>Expensive (architecture) <a class="anchor" href="#architect">#architect</a></h2>
+  <p class="sub">When the answer has to be right and the reasoning has to hold up. Use sparingly.</p>
+  
+  <div class="radar-picks">
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#1</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;openai&#x2F;gpt-5.4">OpenAI: GPT-5.4</a></h3>
+      <div class="price-line">
+        
+          $5.00&#x2F;1M <span class="per-task">&middot; $0.0550 per task</span>
+        
+      </div>
+      
+      <p class="verdict">OpenAI: GPT-5.4 is a top-tier frontier architecture that unifies Codex and GPT systems, delivering a massive 1.1M context window and an arena rating of 1469 for $5.00&#x2F;1M blended tokens. It is an exceptional choice for homelab operators needing deep context handling and complex multi-domain reasoning. However, it may not be worth the cost for casual tasks where simpler models suffice.</p>
+      
+      <div class="tags">
+        <span class="tag">premium</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">7 providers</span><span class="tag">apply patch</span><span class="tag">web search</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1469</b></span>
+          <div class="radar-bar"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>100</b></span>
+          <div class="radar-bar value"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>126.7k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 95%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#2</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;anthropic&#x2F;claude-sonnet-4.6">Anthropic: Claude Sonnet 4.6</a></h3>
+      <div class="price-line">
+        
+          $5.40&#x2F;1M <span class="per-task">&middot; $0.0600 per task</span>
+        
+      </div>
+      
+      <p class="verdict">Anthropic: Claude Sonnet 4.6 is a high-capability model boasting an arena rating of 1458 and a 1M token context for $5.40&#x2F;1M blended tokens. It excels at iterative software development, agentic workflows, and navigating complex codebases in demanding homelab environments. It is not worth the money if you are running lightweight queries that do not leverage its advanced coding and project management strengths.</p>
+      
+      <div class="tags">
+        <span class="tag">premium</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">9 providers</span><span class="tag">advisor</span><span class="tag">bash</span><span class="tag">web search</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1458</b></span>
+          <div class="radar-bar"><span style="width: 99%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>91</b></span>
+          <div class="radar-bar value"><span style="width: 91%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>174.0k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#3</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;anthropic&#x2F;claude-sonnet-4.5">Anthropic: Claude Sonnet 4.5</a></h3>
+      <div class="price-line">
+        
+          $5.40&#x2F;1M <span class="per-task">&middot; $0.0600 per task</span>
+        
+      </div>
+      
+      <p class="verdict">Anthropic: Claude Sonnet 4.5 delivers state-of-the-art coding benchmark performance and real-world agent optimization for $5.40&#x2F;1M blended tokens with a 1M context. It shines in specialized programming and end-to-end development tasks for your local infrastructure. Given that newer iterations exist at similar price points, it may not be worth the investment compared to its direct successor.</p>
+      
+      <div class="tags">
+        <span class="tag">premium</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">7 providers</span><span class="tag">advisor</span><span class="tag">bash</span><span class="tag">web search</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1450</b></span>
+          <div class="radar-bar"><span style="width: 99%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>90</b></span>
+          <div class="radar-bar value"><span style="width: 90%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>31.5k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 87%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+</section>
+
+<section class="radar-section" id="coding-agents">
+  <h2>Coding &amp; SWE agents <a class="anchor" href="#coding-agents">#coding-agents</a></h2>
+  <p class="sub">Models that came with an agent harness bolted on. Point them at a repo and walk away.</p>
+  
+  <div class="radar-picks">
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#1</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;xiaomi&#x2F;mimo-v2.6-flash">Xiaomi: MiMo-V2.6-Flash</a></h3>
+      <div class="price-line">
+        
+          $0.168&#x2F;1M <span class="per-task">&middot; $0.00196 per task</span>
+        
+      </div>
+      
+      <p class="verdict">xiaomi&#x2F;mimo-v2.6-flash is a strong open-weights option for homelab operators seeking a massive context window of 1.1M at a low price of $0.168&#x2F;1M blended tokens. With an arena rating of 1452, it delivers solid performance for general self-hosted workloads, though its lower popularity score and specialized architecture mean it might not be worth the operational overhead if you do not strictly require its extensive context.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">10 providers</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1452</b></span>
+          <div class="radar-bar"><span style="width: 98%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>100</b></span>
+          <div class="radar-bar value"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>13.7k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 80%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#2</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;z-ai&#x2F;glm-5.3-flash">Z.ai: GLM 5.3 Flash</a></h3>
+      <div class="price-line">
+        
+          $0.220&#x2F;1M <span class="per-task">&middot; $0.00250 per task</span>
+        
+      </div>
+      
+      <p class="verdict">z-ai&#x2F;glm-5.3-flash stands out as an efficient open-weights choice for coding and long-horizon agent tasks, backed by a high arena rating of 1472 and a 1.0M context window. Priced reasonably at $0.220&#x2F;1M blended tokens and supported by 36 providers, it represents great value for homelab automation unless your specific use case avoids long-context agentic workflows.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">36 providers</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1472</b></span>
+          <div class="radar-bar"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>81</b></span>
+          <div class="radar-bar value"><span style="width: 81%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>38.4k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 99%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#3</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;z-ai&#x2F;glm-5.3">Z.ai: GLM 5.3</a></h3>
+      <div class="price-line">
+        
+          $0.343&#x2F;1M <span class="per-task">&middot; $0.00359 per task</span>
+        
+      </div>
+      
+      <p class="verdict">Z.ai: GLM 5.3 achieves the highest arena rating in this lineup at 1474 and is specifically engineered for complex software engineering and long-horizon agent tasks. At $0.343 per 1M blended tokens with a 1.0M context window, it is a capable choice for demanding development workloads, though it may be an unnecessary expense for simple scripting or light automation.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">48 providers</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1474</b></span>
+          <div class="radar-bar"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>57</b></span>
+          <div class="radar-bar value"><span style="width: 57%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>25.1k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+</section>
+
+<section class="radar-section" id="tool-use">
+  <h2>Out of the box (native tools) <a class="anchor" href="#tool-use">#tool-use</a></h2>
+  <p class="sub">Native web search, bash and code interpreter. The tool calls are not a prompt template.</p>
+  
+  <div class="radar-picks">
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#1</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;openai&#x2F;gpt-5.6-luna">OpenAI: GPT-5.6 Luna</a></h3>
+      <div class="price-line">
+        
+          $0.400&#x2F;1M <span class="per-task">&middot; $0.00440 per task</span>
+        
+      </div>
+      
+      <p class="verdict">openai&#x2F;gpt-5.6-luna is a fast and cost-efficient option at $0.400&#x2F;1M blended tokens, making it well-suited for high-volume, latency-sensitive homelab tasks like chat, classification, and lightweight agentic workflows. With an arena rating of 1457, it is not worth the money if you require top-tier multi-step reasoning, where slightly more expensive alternatives outperform it.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">long context</span><span class="tag">7 providers</span><span class="tag">apply patch</span><span class="tag">web search</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1457</b></span>
+          <div class="radar-bar"><span style="width: 98%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>100</b></span>
+          <div class="radar-bar value"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>5.8k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 80%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#2</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;google&#x2F;gemini-3-flash-preview">Google: Gemini 3 Flash Preview</a></h3>
+      <div class="price-line">
+        
+          $1.00&#x2F;1M <span class="per-task">&middot; $0.0110 per task</span>
+        
+      </div>
+      
+      <p class="verdict">google&#x2F;gemini-3-flash-preview delivers near pro-level reasoning and tool use for $1.00&#x2F;1M blended tokens, positioning it as a high-speed choice for multi-turn chat, coding assistance, and agentic workflows. However, it may not be worth the money if you want the absolute highest arena performance available in this category, as newer variants surpass its 1466 rating.</p>
+      
+      <div class="tags">
+        <span class="tag">mid-price</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">6 providers</span><span class="tag">web search</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1466</b></span>
+          <div class="radar-bar"><span style="width: 98%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>40</b></span>
+          <div class="radar-bar value"><span style="width: 40%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>196.4k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#3</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;google&#x2F;gemini-3.7-flash">Google: Gemini 3.7 Flash</a></h3>
+      <div class="price-line">
+        
+          $1.35&#x2F;1M <span class="per-task">&middot; $0.0150 per task</span>
+        
+      </div>
+      
+      <p class="verdict">google&#x2F;gemini-3.7-flash achieves the highest arena rating in this lineup at 1490, making it a strong multimodal model for fast agentic workflows, coding, and complex multi-step reasoning. At $1.35&#x2F;1M blended tokens, it is not worth the money if you are running simple, high-volume classification tasks where cheaper models can handle the workload adequately.</p>
+      
+      <div class="tags">
+        <span class="tag">mid-price</span><span class="tag">long context</span><span class="tag">7 providers</span><span class="tag">web search</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1490</b></span>
+          <div class="radar-bar"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>30</b></span>
+          <div class="radar-bar value"><span style="width: 30%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>30.5k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 90%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+</section>
+
+<section class="radar-section" id="realtime-audio">
+  <h2>Voice &amp; audio <a class="anchor" href="#realtime-audio">#realtime-audio</a></h2>
+  <p class="sub">Speech in, speech out, plus the music and clip generators that bill per song.</p>
+  
+  <div class="radar-picks">
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#1</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;google&#x2F;lyria-3-pro-preview">Google: Lyria 3 Pro Preview</a></h3>
+      <div class="price-line">
+        
+          $0.08 per song
+        
+      </div>
+      
+      <p class="verdict">google&#x2F;lyria-3-pro-preview is part of Google&#x27;s Lyria 3 family of music generation models available through the Gemini API and is well suited for generating full-length songs at a cost of $0.08 per song. Since it is currently unrated in the arena, homelab operators should test it carefully before relying on it for critical audio pipelines. It is not worth the money if your workflow only requires short musical snippets rather than complete tracks.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">long context</span><span class="tag">audio out</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>unrated</b></span>
+          <div class="radar-bar"><span style="width: 0%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>0</b></span>
+          <div class="radar-bar value"><span style="width: 0%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>-</b></span>
+          <div class="radar-bar pop"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#2</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;google&#x2F;lyria-3-clip-preview">Google: Lyria 3 Clip Preview</a></h3>
+      <div class="price-line">
+        
+          $0.04 per clip
+        
+      </div>
+      
+      <p class="verdict">google&#x2F;lyria-3-clip-preview is designed for generating shorter audio segments through the Gemini API, priced at $0.04 per 30-second duration clip. This model is good for quickly prototyping short musical cues or background loops without paying for full-length song generation. However, it is not worth the money if you need complete, continuous musical compositions instead of brief 30-second clips.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">long context</span><span class="tag">audio out</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>unrated</b></span>
+          <div class="radar-bar"><span style="width: 0%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>0</b></span>
+          <div class="radar-bar value"><span style="width: 0%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>-</b></span>
+          <div class="radar-bar pop"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#3</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;openai&#x2F;gpt-audio">OpenAI: GPT Audio</a></h3>
+      <div class="price-line">
+        
+          $4.00&#x2F;1M <span class="per-task">&middot; $0.0450 per task</span>
+        
+      </div>
+      
+      <p class="verdict">openai&#x2F;gpt-audio is OpenAI&#x27;s first generally available audio model, featuring an upgraded decoder for more natural-sounding voices and improved voice consistency across a 128K context window. It is good for applications requiring realistic speech synthesis and conversational audio interactions. At $4.00 per 1M blended tokens, it is not worth the money if your homelab tasks only require basic text processing without audio capabilities.</p>
+      
+      <div class="tags">
+        <span class="tag">mid-price</span><span class="tag">open weights</span><span class="tag">audio out</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>unrated</b></span>
+          <div class="radar-bar"><span style="width: 0%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>0</b></span>
+          <div class="radar-bar value"><span style="width: 0%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>-</b></span>
+          <div class="radar-bar pop"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+</section>
+
+<section class="radar-section" id="open-weights">
+  <h2>Open weights (self-hostable) <a class="anchor" href="#open-weights">#open-weights</a></h2>
+  <p class="sub">Weights you can download and run on your own box. Costs you GPU time, not tokens.</p>
+  
+  <div class="radar-picks">
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#1</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;xiaomi&#x2F;mimo-v2.6-flash">Xiaomi: MiMo-V2.6-Flash</a></h3>
+      <div class="price-line">
+        
+          $0.168&#x2F;1M <span class="per-task">&middot; $0.00196 per task</span>
+        
+      </div>
+      
+      <p class="verdict">xiaomi&#x2F;mimo-v2.6-flash is a strong open-weights option for homelab operators seeking a massive context window of 1.1M at a low price of $0.168&#x2F;1M blended tokens. With an arena rating of 1452, it delivers solid performance for general self-hosted workloads, though its lower popularity score and specialized architecture mean it might not be worth the operational overhead if you do not strictly require its extensive context.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">10 providers</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1452</b></span>
+          <div class="radar-bar"><span style="width: 99%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>100</b></span>
+          <div class="radar-bar value"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>13.7k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 81%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#2</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;z-ai&#x2F;glm-5.3-flash">Z.ai: GLM 5.3 Flash</a></h3>
+      <div class="price-line">
+        
+          $0.220&#x2F;1M <span class="per-task">&middot; $0.00250 per task</span>
+        
+      </div>
+      
+      <p class="verdict">z-ai&#x2F;glm-5.3-flash stands out as an efficient open-weights choice for coding and long-horizon agent tasks, backed by a high arena rating of 1472 and a 1.0M context window. Priced reasonably at $0.220&#x2F;1M blended tokens and supported by 36 providers, it represents great value for homelab automation unless your specific use case avoids long-context agentic workflows.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">36 providers</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1472</b></span>
+          <div class="radar-bar"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>81</b></span>
+          <div class="radar-bar value"><span style="width: 81%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>38.4k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#3</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;google&#x2F;gemma-4-31b-it">Google: Gemma 4 31B</a></h3>
+      <div class="price-line">
+        
+          $0.240&#x2F;1M <span class="per-task">&middot; $0.00280 per task</span>
+        
+      </div>
+      
+      <p class="verdict">google&#x2F;gemma-4-31b-it offers a dense multimodal open-weights option with a configurable thinking mode and native function calling for $0.240&#x2F;1M blended tokens. While its 262K context window and 1425 arena rating make it a competent self-hosted assistant for image and text tasks, it is not worth the money if you need the million-token scale provided by other candidates.</p>
+      
+      <div class="tags">
+        <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">16 providers</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1425</b></span>
+          <div class="radar-bar"><span style="width: 97%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>70</b></span>
+          <div class="radar-bar value"><span style="width: 70%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>12.3k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 85%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+</section>
+
+<section class="radar-section" id="image-video">
+  <h2>Image &amp; video <a class="anchor" href="#image-video">#image-video</a></h2>
+  <p class="sub">Priced per generation, not per token. A different kind of budget.</p>
+  
+  <div class="radar-picks">
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#1</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;google&#x2F;gemini-3.1-flash-lite-image">Google: Nano Banana 2 Lite (Gemini 3.1 Flash Lite Image)</a></h3>
+      <div class="price-line">
+        
+          $0.500&#x2F;1M <span class="per-task">&middot; $0.00550 per task</span>
+        
+      </div>
+      
+      <p class="verdict">google&#x2F;gemini-3.1-flash-lite-image is Google&#x27;s fastest and most cost-efficient image model, priced at $0.500 per 1M blended tokens, making it well-suited for high-velocity developer pipelines and rapid-fire visual exploration. With an arena rating of 1313, it is not worth the money if you require top-tier rendering quality for complex, high-fidelity visual production.</p>
+      
+      <div class="tags">
+        <span class="tag">mid-price</span><span class="tag">image out</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1313</b></span>
+          <div class="radar-bar"><span style="width: 90%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>100</b></span>
+          <div class="radar-bar value"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>65.7k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 94%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#2</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;google&#x2F;gemini-nano-banana-2.1">Google: Nano Banana 2.1</a></h3>
+      <div class="price-line">
+        
+          $2.70&#x2F;1M <span class="per-task">&middot; $0.0300 per task</span>
+        
+      </div>
+      
+      <p class="verdict">google&#x2F;gemini-nano-banana-2.1 provides improved product recontextualization on the Flash tier for $2.70 per 1M blended tokens, backed by an arena rating of 1426. It is a solid choice for mid-tier image generation and editing tasks, but it may not be worth the money if you prefer the lowest cost pipeline or the absolute highest multimodal reasoning performance.</p>
+      
+      <div class="tags">
+        <span class="tag">mid-price</span><span class="tag">web search</span><span class="tag">image out</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1426</b></span>
+          <div class="radar-bar"><span style="width: 98%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>20</b></span>
+          <div class="radar-bar value"><span style="width: 20%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>12.9k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 77%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+    <article class="post-card radar-pick">
+      <span class="rank">#3</span>
+      <h3><a href="https:&#x2F;&#x2F;openrouter.ai&#x2F;openai&#x2F;gpt-5.4-image-2">OpenAI: GPT-5.4 Image 2</a></h3>
+      <div class="price-line">
+        
+          $9.40&#x2F;1M <span class="per-task">&middot; $0.1100 per task</span>
+        
+      </div>
+      
+      <p class="verdict">openai&#x2F;gpt-5.4-image-2 combines GPT-5.4 reasoning with state-of-the-art image generation from GPT Image 2, achieving the highest arena rating of 1461 in this lineup. At $9.40 per 1M blended tokens, it is ideal for rich multimodal workflows involving reasoning, coding, and image generation, but it is definitely not worth the money for simple, low-budget generation tasks.</p>
+      
+      <div class="tags">
+        <span class="tag">premium</span><span class="tag">open weights</span><span class="tag">web search</span><span class="tag">image out</span>
+      </div>
+      <div class="metrics">
+        <div class="radar-metric">
+          <span class="label">Quality <b>1461</b></span>
+          <div class="radar-bar"><span style="width: 100%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Value <b>6</b></span>
+          <div class="radar-bar value"><span style="width: 6%"></span></div>
+        </div>
+        <div class="radar-metric">
+          <span class="label">Popular <b>328.3k votes</b></span>
+          <div class="radar-bar pop"><span style="width: 100%"></span></div>
+        </div>
+      </div>
+    </article>
+    
+  </div>
+  
+</section>
+
+
+<section class="radar-section" id="new">
+  <h2>New this week <a class="anchor" href="#new">#new</a></h2>
+  <p class="sub">Models that appeared on OpenRouter since the last issue.</p>
+  
+  <ul class="radar-list">
+    
+    <li>
+      <span class="title"><a href="https://openrouter.ai/moonshotai&#x2F;kimi-k3.1-pro">MoonshotAI: Kimi K3.1 Pro</a></span>
+      <span class="src">Medium &middot; $3.60&#x2F;1M</span>
+      <span class="move">today</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https://openrouter.ai/minimax&#x2F;minimax-m3.1-flash">MiniMax: MiniMax M3.1 Flash</a></span>
+      <span class="src">Cheap &middot; $0.240&#x2F;1M</span>
+      <span class="move">4 days ago</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https://openrouter.ai/deepseek&#x2F;deepseek-v4.1-flash-1017">DeepSeek: DeepSeek V4.1 Flash 1017</a></span>
+      <span class="src">Cheap &middot; $0.240&#x2F;1M</span>
+      <span class="move">6 days ago</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https://openrouter.ai/elorian&#x2F;glimpse">Elorian: Glimpse</a></span>
+      <span class="src">Medium &middot; $1.08&#x2F;1M</span>
+      <span class="move">6 days ago</span>
+    </li>
+    
+  </ul>
+  
+</section>
+
+<section class="radar-section" id="prices">
+  <h2>Price watch <a class="anchor" href="#prices">#prices</a></h2>
+  <p class="sub">Price changes since the last issue, biggest move first.</p>
+  
+  
+  
+  <p class="radar-empty">No price moved more than 5%.</p>
+  
+</section>
+
+<section class="radar-section" id="news">
+  <h2>What people are talking about <a class="anchor" href="#news">#news</a></h2>
+  <p class="sub">Community and vendor chatter from the last seven days.</p>
+  
+  <ul class="radar-list">
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;redact.dev&#x2F;blog&#x2F;whatsapp-help-pages-hidden-ai-instructions">WhatsApp&#x27;s help pages hid LLM instructions: dont recommend a regulator</a></span>
+      <span class="src">Hacker News &middot; 741 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;2610.18861">Hybrid Reasoning Agents: LLM agents that think in latent space, act through text</a></span>
+      <span class="src">Hacker News &middot; 520 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;www.anthropic.com&#x2F;research&#x2F;formal-verification">LLMs are making formal software verification feasible at a much larger scale</a></span>
+      <span class="src">Hacker News &middot; 436 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;www.neowin.net&#x2F;news&#x2F;google-cloud-outage-takes-down-hsbc-revolut-bank-of-scotland-llyods-equifax-more&#x2F;">Google Cloud outage affects almost all banking and other operations in Europe</a></span>
+      <span class="src">Hacker News &middot; 404 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;peec.ai&#x2F;blog&#x2F;publish-stats-get-cited-the-tactic-that-put-my-data-all-over-the-web">Publish fake stats, get cited in LLMs</a></span>
+      <span class="src">Hacker News &middot; 368 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;llmspeed.dev&#x2F;">Show HN: Llmspeed – feel how fast a local LLM runs before you buy the hardware</a></span>
+      <span class="src">Hacker News &middot; 331 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;jrdsgl.com&#x2F;if-you-dont-run-your-own-llm-proxy-how-the-fuck-do-you-even-know-whats-going-on&#x2F;">If you don&#x27;t run your own LLM proxy, how do you know whats going on?</a></span>
+      <span class="src">Hacker News &middot; 302 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;blog.picheta.me&#x2F;post&#x2F;killswitch-lang&#x2F;">I built a programming language that LLMs can&#x27;t use</a></span>
+      <span class="src">Hacker News &middot; 282 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;www.phoronix.com&#x2F;news&#x2F;LKML-New-Trend-Vulnerabilities">Several Linux kernel vulnerabilities accidentally posted to public mailing list</a></span>
+      <span class="src">Hacker News &middot; 249 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;rumple.github.io&#x2F;blog&#x2F;2026&#x2F;10&#x2F;20&#x2F;asking-llm-for-confidence.html">Using LLM for confidence scoring is a bad idea</a></span>
+      <span class="src">Hacker News &middot; 219 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;github.com&#x2F;dsmurrell&#x2F;onkey">Show HN: OnKey – I&#x27;m a bad singer, so I built an app to show where I&#x27;m off-key</a></span>
+      <span class="src">Hacker News &middot; 191 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;github.com&#x2F;KatrielMoses&#x2F;voidaccess">Show HN: VoidAccess – open-source dark web OSINT, from query to a graph</a></span>
+      <span class="src">Hacker News &middot; 188 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;www.reuters.com&#x2F;business&#x2F;europe-ev-sales-rose-70-september-almost-30-market-share-2026-10-19&#x2F;">Europe EV sales rose 70.3% in September, 32.6% of market share</a></span>
+      <span class="src">Hacker News &middot; 167 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;www.lemonde.fr&#x2F;en&#x2F;international&#x2F;article&#x2F;2026&#x2F;10&#x2F;17&#x2F;israeli-settlers-attack-european-diplomatic-cars-in-west-bank-beat-french-mayor-say-witnesses_6758711_4.html">Israeli settlers attack European diplomatic cars in West Bank beat French mayor</a></span>
+      <span class="src">Hacker News &middot; 154 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;heymaxwell.ai&#x2F;">Maxwell: A new kind of model that sits between code and hardware</a></span>
+      <span class="src">Hacker News &middot; 135 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;github.com&#x2F;IsuruMaduranga&#x2F;harness-engineering-101">Harness Engineering 101: The LLM is the brain, the harness is the body</a></span>
+      <span class="src">Hacker News &middot; 132 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;blog.alexewerlof.com&#x2F;p&#x2F;rise-and-fall-of-jev-eval-hype-vs-llm">The rise and fall of Jev hype</a></span>
+      <span class="src">Hacker News &middot; 84 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;github.com&#x2F;kividbio&#x2F;kividb">Show HN: KiviDB, a faster Redis-compatible memory database and vector cache</a></span>
+      <span class="src">Hacker News &middot; 69 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;alterauth.com&#x2F;">Launch HN: Alter (YC S25) – Access control for multi-user agents</a></span>
+      <span class="src">Hacker News &middot; 68 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=">Launch HN: Laminar (YC S24) – RL-trained model that finds errors in agent traces</a></span>
+      <span class="src">Hacker News &middot; 59 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=">Launch HN: Respan (YC W24) – Open-source Rust AI gateway built around plugins</a></span>
+      <span class="src">Hacker News &middot; 53 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;www.cnn.com&#x2F;2026&#x2F;10&#x2F;21&#x2F;climate&#x2F;cop31-un-climate-report-emissions-gap">UN says breaching 1.5C warming limit is &#x27;imminent and unavoidable&#x27;</a></span>
+      <span class="src">Hacker News &middot; 51 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;fleetingswallow.com&#x2F;minotaur-ai-deep-dive-achieving-reasoning-without-a-language-model&#x2F;">Achieving AI-style reasoning without an LLM</a></span>
+      <span class="src">Hacker News &middot; 46 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;olivergrabner.com&#x2F;research&#x2F;pokemon&#x2F;">LLM agents play Pokemon showdown</a></span>
+      <span class="src">Hacker News &middot; 31 points</span>
+    </li>
+    
+  </ul>
+  
+</section>
+
+
+<section class="radar-section" id="papers">
+  <h2>Reading <a class="anchor" href="#papers">#papers</a></h2>
+  <p class="sub">Today's papers from the HuggingFace daily feed.</p>
+  <ul class="radar-list">
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2610.24385">Bridging Exploration and Persona: Information-Directed Dueling for Test-Time Agent Personalization</a><br>
+        <span class="src">Effective test-time personalization requires LLM agents to adapt to query-dependent user preferences from lightweight interaction.</span></span>
+      
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2610.24383">IF-MAP: Influence-Function-Inspired Agent Prioritization in Multi-Agent Systems</a><br>
+        <span class="src">Improving every agent in an LLM-based multi-agent system can be prohibitively costly, making it important to identify which agent should be prioritized to achieve the greatest system-level gain with limited resources.</span></span>
+      
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2610.30418">Agent Mosaic: Recognizing Confidentiality Leaks in Agentic LLM Systems</a><br>
+        <span class="src">Modern LLM agents can retrieve information from accessible documents, and then disclose a sensitive conclusion assembled from them.</span></span>
+      
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2610.28950">HyperDrone: Simulation-to-Reality Transfer at Millions of Frames per Second</a><br>
+        <span class="src">We present HyperDrone, an extremely fast quadrotor simulator focused on high-performance batch rendering that is more than 20x faster than existing state-of-the-art batch quadrotor simulators.</span></span>
+      
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2610.31651">BrickWright: Agentic Creation of Physically Feasible Brick Builds</a><br>
+        <span class="src">Frontier coding agents are becoming increasingly adept at 3D modeling.</span></span>
+      
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2610.27148">Who Takes the Lead? Model Ability and Task-Conditioned Collaboration with Humans</a><br>
+        <span class="src">As language-model agents grow more capable, they can carry more of a task without asking anyone for help.</span></span>
+      
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2610.30753">FilmFlow: Agentic System for 3D Virtual Film Cinematography</a><br>
+        <span class="src">Complex camera motion is central to visual storytelling, yet translating cinematographic intent into controllable, executable camera trajectories remains challenging.</span></span>
+      
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2610.31372">RIDAR: Safeguarding Research Integrity in Autonomous Research Agents via Automated Detection and Runtime Intervention</a><br>
+        <span class="src">Autonomous research agents are increasingly used to automate large portions of scientific research, yet they are prone to research integrity violations (RIVs): behaviors that compromise the validity, reproducibility, or faithfulness of the research process.</span></span>
+      
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2610.12586">Realism VS Accuracy: Event Sequence Forecasting from a Generative Modeling Perspective</a><br>
+        <span class="src">Event sequences are chains of random events, each described by heterogeneous (numerical and categorical) features.</span></span>
+      
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;huggingface.co&#x2F;papers&#x2F;2610.22951">MambaAct: Efficient Mamba Action Experts for Flow-Matching Vision-Language-Action Models</a><br>
+        <span class="src">Vision-language-action (VLA) models have shown strong promise for generalist robotic manipulation, but their inference cost remains a major bottleneck for real-time control.</span></span>
+      
+    </li>
+    
+  </ul>
+</section>
+
+
+<section class="radar-section" id="method">
+  <h2>How this was made <a class="anchor" href="#method">#method</a></h2>
+  <div class="radar-method">
+    <h3>Sources</h3>
+    <ul class="sources">
+      
+      <li><span class="dot bad"></span><span>OpenRouter</span></li>
+      
+      <li><span class="dot "></span><span>LMArena</span></li>
+      
+      <li><span class="dot "></span><span>Artificial Analysis</span></li>
+      
+      <li><span class="dot "></span><span>HuggingFace</span></li>
+      
+      <li><span class="dot "></span><span>Hacker News</span></li>
+      
+      <li><span class="dot bad"></span><span>Reddit</span></li>
+      
+      <li><span class="dot "></span><span>Vendor blogs</span></li>
+      
+    </ul>
+    <p><strong>Price tiers.</strong> cheap under $0.50&#x2F;1M blended tokens, medium $0.50-$5.00, expensive above. Blended is 80% input, 20% output, priced on the cheapest provider.</p>
+    <p><strong>Value.</strong> value = quality &#x2F; cost of a 10000 token in + 2000 token out task, with a $0.00 cost floor so free models score high without dividing by zero.</p>
+    <p><strong>Popularity.</strong> A blend of arena votes, how many providers serve the model,
+       HuggingFace trending and how often the model is named in the week's chatter.</p>
+    <p class="llm">The prose is written by google&#x2F;gemini-3.5-flash-lite, running on the numbers above it. It is told to describe only the models and prices in its input; blocks that mention an unknown model are dropped before publishing. Without an API key the report falls back to templated text and every number still stands.</p>
+  </div>
+</section>
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>AI Radar &mdash; a weekly overview of the AI models available.
+       Picked by a deterministic scoring pass over OpenRouter, LMArena
+       and HuggingFace; the prose is written by a small model.</p>
+    <p>
+      <a href="https://dennis-verdonschot.nl/">Home</a>
+      &middot;
+      <a href="https://dennis-verdonschot.nl/blog.html">Blog</a>
+      &middot;
+      <a href="https://radar.dennis-verdonschot.nl/">This report on its own host</a>
+      &middot;
+      <a href="https://typetutor.org/">Typetutor</a>
+    </p>
+  </div>
+</footer>
+
+<script src="https://dennis-verdonschot.nl/js/theme.js"></script>
+</body>
+</html>
