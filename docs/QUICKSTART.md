@@ -26,6 +26,13 @@ npm run dev
 git add .
 git commit -m "Add new post"
 git push
+> **Where the code lives.** The source of truth is Forgejo
+> (`ewt-lab/personal-site`). GitHub Pages serves the site, so this
+> repository is mirrored one way to
+> `github.com/dverdonschot/dverdonschot.github.io` by
+> `scripts/sync-to-github.sh`. Push to `origin` (Forgejo) and the
+> mirror deploys it. Never push to GitHub by hand: the next sync
+> overwrites it.
 ```
 
 ## Post Template

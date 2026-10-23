@@ -69,6 +69,13 @@ npm run dev
 ```bash
 1. Create repo: username.github.io
 2. Push code: git push origin main
+> **Where the code lives.** The source of truth is Forgejo
+> (`ewt-lab/personal-site`). GitHub Pages serves the site, so this
+> repository is mirrored one way to
+> `github.com/dverdonschot/dverdonschot.github.io` by
+> `scripts/sync-to-github.sh`. Push to `origin` (Forgejo) and the
+> mirror deploys it. Never push to GitHub by hand: the next sync
+> overwrites it.
 3. Enable GitHub Pages (Settings → Pages)
 4. Wait 2 minutes
 5. Visit: https://username.github.io

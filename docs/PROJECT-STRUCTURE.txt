@@ -109,7 +109,11 @@ npm install         Install dependencies
 npm run build       Build site to dist/
 npm run serve       Preview at localhost:8000
 npm run dev         Build + serve in one
-git push            Deploy to GitHub (auto)
+git push            Deploy to Forgejo, then mirrored to GitHub Pages
+
+  source of truth : Forgejo  ewt-lab/personal-site
+  pages mirror    : GitHub   dverdonschot/dverdonschot.github.io
+  sync script     : scripts/sync-to-github.sh
 
 ═══════════════════════════════════════════════════════
 
