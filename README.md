@@ -107,6 +107,34 @@ The `build.js` script handles:
 
 ## Deployment
 
+The code lives on **Forgejo** (`ewt-lab/personal-site`). GitHub Pages
+serves the site, so this repository is mirrored one way to
+`github.com/dverdonschot/dverdonschot.github.io`, and the GitHub
+Actions workflow there builds and deploys it.
+
+```
+~/projects/personal-site
+   origin  -> Forgejo   ewt-lab/personal-site        (source of truth)
+   github  -> GitHub    dverdonschot/dverdonschot.github.io  (Pages mirror)
+```
+
+Work happens on Forgejo. After every push to `origin`, the mirror
+runs and Pages redeploys:
+
+```bash
+# one-off
+bash scripts/sync-to-github.sh
+
+# or let the timer do it (every 30 minutes)
+sudo systemctl start personal-site-sync.timer
+```
+
+The mirror is one way on purpose: Forgejo wins. A commit pushed to
+GitHub by hand is overwritten by the next sync.
+
+The site is served at **https://dennis-verdonschot.nl/**. The
+`dverdonschot.github.io` address keeps working as well.
+
 ### GitHub Pages
 
 1. Build your site: `npm run build`

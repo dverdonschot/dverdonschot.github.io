@@ -1,0 +1,14 @@
+[Unit]
+Description=Mirror personal-site from Forgejo to GitHub Pages (timer)
+Documentation=file:///home/ubuntu/projects/personal-site/README.md
+
+[Timer]
+# GitHub Pages only needs the mirror when the site changed, but a
+# timer is simpler than a webhook and it also catches changes made
+# in the Forgejo web UI.
+OnCalendar=*:0/30
+Persistent=true
+RandomizedDelaySec=5m
+
+[Install]
+WantedBy=timers.target
