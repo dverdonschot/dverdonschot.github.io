@@ -43,14 +43,30 @@
   <p class="tagline">A weekly overview of the AI models available: which one to use for
      which job, what it costs, and what is new.</p>
   
-    <p>This week brings news that LLMs are making formal software verification feasible at a much larger scale, while other discussions explore achieving AI-style reasoning without an LLM and using LLMs for confidence scoring as a bad idea. Additionally, new developments include multi-user agent access control and LLM agents playing Pokémon Showdown. Homelab operators should review these integration patterns and access control tools while maintaining caution regarding confidence scoring use cases.</p>
+    <p class="digest">This week brings notable developments in software verification and reasoning, with reports that large language models are making formal software verification feasible at a much larger scale, alongside explorations into achieving AI-style reasoning without an LLM and LLM agents playing Pokemon showdown. Security remains a critical concern for operators, highlighted by headlines regarding the http2shell remote code execution vulnerability affecting Node and Python, as well as several Linux kernel vulnerabilities accidentally posted to a public mailing list. For your homelab this week, you should prioritize patching your Node and Python environments and reviewing your Linux kernel updates against the recent mailing list disclosures.</p>
   
   <p class="issue">issue 2026-W43 &middot; generated 2026-10-24
      &middot; 3 new models</p>
 </div>
 
+<nav class="contents" aria-label="Chapters">
+  <a href="#quick">Short answer</a>
+  <a href="#router">Cheap</a>
+  <a href="#workhorse">Medium</a>
+  <a href="#architect">Expensive</a>
+  <a href="#coding-agents">Coding</a>
+  <a href="#tool-use">Tools</a>
+  <a href="#realtime-audio">Voice</a>
+  <a href="#open-weights">Open weights</a>
+  <a href="#image-video">Image</a>
+  <a href="#new">New</a>
+  <a href="#prices">Prices</a>
+  <a href="#news">News</a>
+  <a href="#method">Method</a>
+</nav>
+
 <section class="radar-section" id="quick">
-  <h2>The short answer <a class="anchor" href="#quick">#quick</a></h2>
+  <h2 id="quick-title"><a href="#quick">The short answer</a> <span class="anchor">#quick</span></h2>
   <p class="sub">One pick per job: the best value model we found that is also popular
      enough to be worth trusting.</p>
   <table class="radar-table">
@@ -69,9 +85,7 @@
           <td data-label="Price" class="price">
             $0.168&#x2F;1M
           </td>
-          <td data-label="Why" class="note">
-            Xiaomi: MiMo-V2.6-Flash offers a massive 1.1M context window and an arena rating of 1452 at a modest blended price of $0.168 per million tokens. It is…
-          </td>
+          <td data-label="Why" class="note">arena 1452 · 10 providers · 1.1M context · open weights</td>
         </tr>
         
       
@@ -85,9 +99,7 @@
           <td data-label="Price" class="price">
             $0.500&#x2F;1M
           </td>
-          <td data-label="Why" class="note">
-            google&#x2F;gemini-3.1-flash-lite-image is Google&#x27;s fastest and most cost-efficient image model at just $0.500&#x2F;1M blended tokens, making it great for high-…
-          </td>
+          <td data-label="Why" class="note">arena 1313 · 2 providers · 65K context</td>
         </tr>
         
       
@@ -101,9 +113,7 @@
           <td data-label="Price" class="price">
             $5.00&#x2F;1M
           </td>
-          <td data-label="Why" class="note">
-            OpenAI: GPT-5.4 is a top-tier frontier architecture priced at $5.00 per 1M blended tokens with a massive 1.1M context window. It is well-suited for de…
-          </td>
+          <td data-label="Why" class="note">arena 1469 · 7 providers · 1.1M context · open weights</td>
         </tr>
         
       
@@ -117,9 +127,7 @@
           <td data-label="Price" class="price">
             $0.168&#x2F;1M
           </td>
-          <td data-label="Why" class="note">
-            Xiaomi: MiMo-V2.6-Flash offers a massive 1.1M context window and an arena rating of 1452 at a modest blended price of $0.168 per million tokens. It is…
-          </td>
+          <td data-label="Why" class="note">arena 1452 · 10 providers · 1.1M context · open weights</td>
         </tr>
         
       
@@ -133,9 +141,7 @@
           <td data-label="Price" class="price">
             $0.400&#x2F;1M
           </td>
-          <td data-label="Why" class="note">
-            openai&#x2F;gpt-5.6-luna is a solid option for high-volume, latency-sensitive homelab tasks like chat, classification, and lightweight agentic workflows, c…
-          </td>
+          <td data-label="Why" class="note">arena 1457 · 7 providers · 1.1M context</td>
         </tr>
         
       
@@ -149,9 +155,7 @@
           <td data-label="Price" class="price">
             $0.08 per song
           </td>
-          <td data-label="Why" class="note">
-            google&#x2F;lyria-3-pro-preview is part of Google&#x27;s family of music generation models available through the Gemini API and is well-suited for generating fu…
-          </td>
+          <td data-label="Why" class="note">1 provider · 1.0M context</td>
         </tr>
         
       
@@ -165,9 +169,7 @@
           <td data-label="Price" class="price">
             $0.168&#x2F;1M
           </td>
-          <td data-label="Why" class="note">
-            Xiaomi: MiMo-V2.6-Flash offers a massive 1.1M context window and an arena rating of 1452 at a modest blended price of $0.168 per million tokens. It is…
-          </td>
+          <td data-label="Why" class="note">arena 1452 · 10 providers · 1.1M context · open weights</td>
         </tr>
         
       
@@ -181,9 +183,7 @@
           <td data-label="Price" class="price">
             $0.500&#x2F;1M
           </td>
-          <td data-label="Why" class="note">
-            google&#x2F;gemini-3.1-flash-lite-image is Google&#x27;s fastest and most cost-efficient image model at just $0.500&#x2F;1M blended tokens, making it great for high-…
-          </td>
+          <td data-label="Why" class="note">arena 1313 · 2 providers · 65K context</td>
         </tr>
         
       
@@ -193,7 +193,7 @@
 
 
 <section class="radar-section" id="router">
-  <h2>Cheap &amp; small (task routing) <a class="anchor" href="#router">#router</a></h2>
+  <h2 id="router"><a href="#router">Cheap &amp; small (task routing)</a> <span class="anchor">#router</span></h2>
   <p class="sub">Cheap enough to call on every step. Routing, classification, extraction, summarising.</p>
   
   <div class="radar-picks">
@@ -207,7 +207,7 @@
         
       </div>
       
-      <p class="verdict">Xiaomi: MiMo-V2.6-Flash offers a massive 1.1M context window and an arena rating of 1452 at a modest blended price of $0.168 per million tokens. It is well-suited for self-hosted workloads requiring deep context processing, though its low popularity score of 46 suggests limited community tooling for homelab deployment.</p>
+      <p class="verdict">xiaomi&#x2F;mimo-v2.6-flash is a mixture-of-experts open-weights model offering a 1.1M context window and an arena rating of 1452 at a blended price of $0.168 per 1M tokens. It is well-suited for broad self-hosted homelab workloads requiring massive context lengths. However, its low popularity score of 46 means community tooling and deployment recipes may be less mature.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">10 providers</span>
@@ -237,7 +237,7 @@
         
       </div>
       
-      <p class="verdict">Z.ai: GLM 5.3 Flash delivers strong performance with a 1472 arena rating and broad provider support for efficient coding and long-horizon tasks. At $0.220 per million blended tokens, it is worth the money if you need a reliable multimodal model, but cheaper options exist if you do not require its specific agentic capabilities.</p>
+      <p class="verdict">z-ai&#x2F;glm-5.3-flash is a native multimodal open-weights model priced at $0.220 per 1M blended tokens with an arena rating of 1472 and a 1.0M context window. It excels at efficient coding tasks and long-horizon agent operations while maintaining strong long-context behavior. Given its wide availability across 38 providers and a popularity score of 58, it is worth the slightly higher price for homelab operators needing reliable tool use.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">38 providers</span>
@@ -267,7 +267,7 @@
         
       </div>
       
-      <p class="verdict">z-ai&#x2F;glm-5.3 is built for complex software engineering and long-horizon agent tasks, achieving an arena rating of 1474 with a 1.0M context window at a price of $0.343 per 1M blended tokens. It is worth the money when your homelab demands deep reasoning and high reliability for intricate programming workflows. If your tasks are straightforward or repetitive, the higher price tag makes it less practical than lighter flash alternatives.</p>
+      <p class="verdict">z-ai&#x2F;glm-5.3 delivers the highest arena rating in this lineup, making it a strong candidate for complex software engineering and long-horizon agent tasks. It is worth the money when your homelab automation demands precise, large-scale reasoning over a 1M-token context window. If your tasks are simpler and budget is tight, paying for this heavier reasoning model may be unnecessary.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">48 providers</span>
@@ -293,7 +293,7 @@
 </section>
 
 <section class="radar-section" id="workhorse">
-  <h2>Medium (real work &amp; coding) <a class="anchor" href="#workhorse">#workhorse</a></h2>
+  <h2 id="workhorse"><a href="#workhorse">Medium (real work &amp; coding)</a> <span class="anchor">#workhorse</span></h2>
   <p class="sub">The models that do the actual work: writing, refactoring, debugging, agentic loops.</p>
   
   <div class="radar-picks">
@@ -307,7 +307,7 @@
         
       </div>
       
-      <p class="verdict">google&#x2F;gemini-3.1-flash-lite-image is Google&#x27;s fastest and most cost-efficient image model at just $0.500&#x2F;1M blended tokens, making it great for high-velocity developer pipelines and rapid-fire visual exploration. It may not be worth the money if you require maximum arena performance, as its rating sits lower at 1313 compared to heavier alternatives.</p>
+      <p class="verdict">google&#x2F;gemini-3.1-flash-lite-image is Google&#x27;s fastest and most cost-efficient image model at just $0.500&#x2F;1M blended tokens, making it great for high-velocity developer pipelines and rapid-fire visual exploration. However, with an arena rating of 1313, it is not worth the money if your homelab tasks require top-tier artistic fidelity or complex reasoning.</p>
       
       <div class="tags">
         <span class="tag">mid-price</span><span class="tag">image out</span>
@@ -337,7 +337,7 @@
         
       </div>
       
-      <p class="verdict">xiaomi&#x2F;mimo-v2.6-pro is a flagship foundation model built at a scale of over 1T parameters, priced at $0.522 per 1M blended tokens. It offers an impressive arena rating of 1491 and a massive 1.1M context window across 5 providers, making it exceptionally good for demanding real-world work and extensive coding projects. Given its high capability ceiling and broad availability, it is well worth the money for homelab operators needing deep context handling.</p>
+      <p class="verdict">xiaomi&#x2F;mimo-v2.6-pro is a flagship foundation model developed by Xiaomi at a scale of over 1T parameters, priced at $0.522&#x2F;1M blended tokens and boasting a strong arena rating of 1491. With a massive 1.1M context window and moderate popularity, it is designed to push capability ceilings for the most demanding medium-tier workloads. It is not worth the money if you only need lightweight processing where its massive parameter scale and extensive context are underutilized.</p>
       
       <div class="tags">
         <span class="tag">mid-price</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">5 providers</span>
@@ -367,7 +367,7 @@
         
       </div>
       
-      <p class="verdict">qwen&#x2F;qwen3.7-plus is a cost-effective model priced at $0.512 per 1M blended tokens that supports both text and image inputs with text outputs. Boasting a strong arena rating of 1455 and a 1M context window, it is a great choice for general-purpose tasks and multimodal workloads in your homelab. It provides a solid balance of performance and price, making it a reliable workhorse unless your specific pipeline demands specialized image generation instead of text output.</p>
+      <p class="verdict">qwen&#x2F;qwen3.7-plus is a cost-effective model in Alibaba&#x27;s Qwen3.7 series, priced at $0.512&#x2F;1M blended tokens with a competitive arena rating of 1455. It supports text and image input with text output across a generous 1M context window, making it a versatile choice for multimodal homelab tasks. It is not worth the money if you require specialized image generation, as this model is strictly built for text-based outputs.</p>
       
       <div class="tags">
         <span class="tag">mid-price</span><span class="tag">long context</span>
@@ -393,7 +393,7 @@
 </section>
 
 <section class="radar-section" id="architect">
-  <h2>Expensive (architecture) <a class="anchor" href="#architect">#architect</a></h2>
+  <h2 id="architect"><a href="#architect">Expensive (architecture)</a> <span class="anchor">#architect</span></h2>
   <p class="sub">When the answer has to be right and the reasoning has to hold up. Use sparingly.</p>
   
   <div class="radar-picks">
@@ -407,7 +407,7 @@
         
       </div>
       
-      <p class="verdict">OpenAI: GPT-5.4 is a top-tier frontier architecture priced at $5.00 per 1M blended tokens with a massive 1.1M context window. It is well-suited for demanding, large-scale tasks that require unified Codex and GPT capabilities in your homelab. However, it may not be worth the money if you are running simpler workloads that do not benefit from its high-end arena rating and expansive context.</p>
+      <p class="verdict">openai&#x2F;gpt-5.4 is a strong frontier model for homelab operators needing a unified system with a massive context window of over 1 million tokens. At $5.00 per 1 million blended tokens, it is not worth the money if you only require basic task automation where lower-cost alternatives suffice.</p>
       
       <div class="tags">
         <span class="tag">premium</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">7 providers</span><span class="tag">apply patch</span><span class="tag">web search</span>
@@ -437,7 +437,7 @@
         
       </div>
       
-      <p class="verdict">Anthropic: Claude Opus 5.5 is Anthropic&#x27;s flagship model, delivering elite reasoning and coding performance for $7.20 per 1M blended tokens. It excels at multi-step changes across large codebases and complex agentic workflows, making it a strong choice for heavy homelab development tasks. Given its premium price tag, it is not worth the money for routine queries or trivial text generation.</p>
+      <p class="verdict">anthropic&#x2F;claude-opus-5.5 serves as a flagship model for demanding reasoning, complex coding, and multi-step changes in large codebases. With a high price of $7.20 per 1 million blended tokens, it is not worth the money for routine queries or trivial workloads that do not utilize its advanced agentic capabilities.</p>
       
       <div class="tags">
         <span class="tag">premium</span><span class="tag">long context</span><span class="tag">11 providers</span><span class="tag">advisor</span><span class="tag">bash</span><span class="tag">web fetch</span><span class="tag">web search</span>
@@ -467,7 +467,7 @@
         
       </div>
       
-      <p class="verdict">Anthropic: Claude Sonnet 4.6 offers strong frontier capabilities for iterative coding and project management at $5.40 per 1M blended tokens. It shines when navigating complex codebases and handling professional homelab workflows efficiently. If your use case only requires basic text processing, the higher cost of this model makes it an unnecessary expense.</p>
+      <p class="verdict">anthropic&#x2F;claude-sonnet-4.6 provides reliable performance for iterative development, complex codebase navigation, and end-to-end project management. Costing $5.40 per 1 million blended tokens, it is not worth the money if your homelab projects do not require deep professional-grade coding or extensive context handling.</p>
       
       <div class="tags">
         <span class="tag">premium</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">9 providers</span><span class="tag">advisor</span><span class="tag">bash</span><span class="tag">web search</span>
@@ -493,7 +493,7 @@
 </section>
 
 <section class="radar-section" id="coding-agents">
-  <h2>Coding &amp; SWE agents <a class="anchor" href="#coding-agents">#coding-agents</a></h2>
+  <h2 id="coding-agents"><a href="#coding-agents">Coding &amp; SWE agents</a> <span class="anchor">#coding-agents</span></h2>
   <p class="sub">Models that came with an agent harness bolted on. Point them at a repo and walk away.</p>
   
   <div class="radar-picks">
@@ -507,7 +507,7 @@
         
       </div>
       
-      <p class="verdict">Xiaomi: MiMo-V2.6-Flash offers a massive 1.1M context window and an arena rating of 1452 at a modest blended price of $0.168 per million tokens. It is well-suited for self-hosted workloads requiring deep context processing, though its low popularity score of 46 suggests limited community tooling for homelab deployment.</p>
+      <p class="verdict">xiaomi&#x2F;mimo-v2.6-flash is a mixture-of-experts open-weights model offering a 1.1M context window and an arena rating of 1452 at a blended price of $0.168 per 1M tokens. It is well-suited for broad self-hosted homelab workloads requiring massive context lengths. However, its low popularity score of 46 means community tooling and deployment recipes may be less mature.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">10 providers</span>
@@ -537,7 +537,7 @@
         
       </div>
       
-      <p class="verdict">Z.ai: GLM 5.3 Flash delivers strong performance with a 1472 arena rating and broad provider support for efficient coding and long-horizon tasks. At $0.220 per million blended tokens, it is worth the money if you need a reliable multimodal model, but cheaper options exist if you do not require its specific agentic capabilities.</p>
+      <p class="verdict">z-ai&#x2F;glm-5.3-flash is a native multimodal open-weights model priced at $0.220 per 1M blended tokens with an arena rating of 1472 and a 1.0M context window. It excels at efficient coding tasks and long-horizon agent operations while maintaining strong long-context behavior. Given its wide availability across 38 providers and a popularity score of 58, it is worth the slightly higher price for homelab operators needing reliable tool use.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">38 providers</span>
@@ -567,7 +567,7 @@
         
       </div>
       
-      <p class="verdict">z-ai&#x2F;glm-5.3 is built for complex software engineering and long-horizon agent tasks, achieving an arena rating of 1474 with a 1.0M context window at a price of $0.343 per 1M blended tokens. It is worth the money when your homelab demands deep reasoning and high reliability for intricate programming workflows. If your tasks are straightforward or repetitive, the higher price tag makes it less practical than lighter flash alternatives.</p>
+      <p class="verdict">z-ai&#x2F;glm-5.3 delivers the highest arena rating in this lineup, making it a strong candidate for complex software engineering and long-horizon agent tasks. It is worth the money when your homelab automation demands precise, large-scale reasoning over a 1M-token context window. If your tasks are simpler and budget is tight, paying for this heavier reasoning model may be unnecessary.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">48 providers</span>
@@ -593,7 +593,7 @@
 </section>
 
 <section class="radar-section" id="tool-use">
-  <h2>Out of the box (native tools) <a class="anchor" href="#tool-use">#tool-use</a></h2>
+  <h2 id="tool-use"><a href="#tool-use">Out of the box (native tools)</a> <span class="anchor">#tool-use</span></h2>
   <p class="sub">Native web search, bash and code interpreter. The tool calls are not a prompt template.</p>
   
   <div class="radar-picks">
@@ -607,7 +607,7 @@
         
       </div>
       
-      <p class="verdict">openai&#x2F;gpt-5.6-luna is a solid option for high-volume, latency-sensitive homelab tasks like chat, classification, and lightweight agentic workflows, coming in at $0.400&#x2F;1M blended tokens with a massive 1.1M context window and an arena rating of 1457. However, with a popularity score of 41, it may not be worth the higher price if you prefer cheaper, highly utilized alternatives in the same class.</p>
+      <p class="verdict">openai&#x2F;gpt-5.6-luna is a fast and cost-efficient model priced at $0.400&#x2F;1M blended tokens with an arena rating of 1457. It is well-suited for high-volume, latency-sensitive tasks like chat, classification, and lightweight agentic workflows, though it may not be worth the money if you require maximum reasoning depth over raw speed.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">long context</span><span class="tag">7 providers</span><span class="tag">apply patch</span><span class="tag">web search</span>
@@ -637,7 +637,7 @@
         
       </div>
       
-      <p class="verdict">anthropic&#x2F;claude-haiku-5.5 is well-suited for high-volume, cost-sensitive homelab work such as summarization, subagents, and browser use, priced efficiently at $0.180&#x2F;1M blended tokens with a 1M context. It is not worth spending money on if your workload requires proven arena ratings, as its measured arena score sits at zero.</p>
+      <p class="verdict">anthropic&#x2F;claude-haiku-5.5 is Anthropic&#x27;s small, fast model priced at $0.180&#x2F;1M blended tokens. It is good for high-volume and cost-sensitive work such as summarization, subagents, and browser use, but it is not worth the money if your homelab needs extensive domain-specific code generation.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">long context</span><span class="tag">10 providers</span><span class="tag">advisor</span><span class="tag">bash</span><span class="tag">web fetch</span><span class="tag">web search</span>
@@ -667,7 +667,7 @@
         
       </div>
       
-      <p class="verdict">openai&#x2F;gpt-6-luna targets high-volume and latency-sensitive workloads like chat, classification, and lightweight agentic tasks, offering a 1.1M context window for a low price of $0.180&#x2F;1M blended tokens. It might not be worth the investment for rigorous performance evaluations yet given its low popularity score of 13 and unmeasured arena rating.</p>
+      <p class="verdict">openai&#x2F;gpt-6-luna serves as a fast and cost-efficient option in OpenAI&#x27;s GPT-6 series at $0.180&#x2F;1M blended tokens. It excels at high-volume and latency-sensitive workloads like chat, classification, and lightweight agentic tasks, but it is not worth the money if you need heavier reasoning capabilities found in flagship models.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">long context</span><span class="tag">7 providers</span><span class="tag">apply patch</span><span class="tag">web search</span>
@@ -693,7 +693,7 @@
 </section>
 
 <section class="radar-section" id="realtime-audio">
-  <h2>Voice &amp; audio <a class="anchor" href="#realtime-audio">#realtime-audio</a></h2>
+  <h2 id="realtime-audio"><a href="#realtime-audio">Voice &amp; audio</a> <span class="anchor">#realtime-audio</span></h2>
   <p class="sub">Speech in, speech out, plus the music and clip generators that bill per song.</p>
   
   <div class="radar-picks">
@@ -707,7 +707,7 @@
         
       </div>
       
-      <p class="verdict">google&#x2F;lyria-3-pro-preview is part of Google&#x27;s family of music generation models available through the Gemini API and is well-suited for generating full-length songs at a cost of $0.08 per song. Because full-length tracks carry a per-song fee despite a free token pricing tier, it is not worth the money if you only need short samples or rapid prototyping.</p>
+      <p class="verdict">google&#x2F;lyria-3-pro-preview is part of Google&#x27;s family of music generation models available through the Gemini API and is well-suited for generating full-length songs at a cost of $0.08 per song. Since it has an unrated arena standing and a low popularity score of 4, it is not worth spending money on if you need thoroughly vetted or widely adopted audio solutions for your homelab.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">long context</span><span class="tag">audio out</span>
@@ -737,7 +737,7 @@
         
       </div>
       
-      <p class="verdict">google&#x2F;lyria-3-clip-preview provides 30-second duration music clips through the Gemini API for $0.04 per clip. It is a good option when you only need brief audio snippets, but it is not worth the money if you require complete songs, as paying per short clip can quickly become inefficient compared to full-track generation.</p>
+      <p class="verdict">google&#x2F;lyria-3-clip-preview is designed for creating shorter 30-second duration audio clips at a price of $0.04 per clip using Google&#x27;s music generation architecture. Given its unrated arena status and popularity score of 4, it may not be worth the money if you require high-demand or extensively tested models for your automated workflows.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">long context</span><span class="tag">audio out</span>
@@ -767,7 +767,7 @@
         
       </div>
       
-      <p class="verdict">openai&#x2F;gpt-audio is OpenAI&#x27;s first generally available audio model featuring an upgraded decoder for natural-sounding voices and improved voice consistency within a 128K context window. Priced at $4.00 per 1M blended tokens, it is useful for applications requiring reliable spoken audio processing, but it may not be worth the money for standard homelab text tasks that do not utilize its native audio capabilities.</p>
+      <p class="verdict">openai&#x2F;gpt-audio is OpenAI&#x27;s generally available audio model featuring an upgraded decoder for more natural-sounding voices and improved voice consistency across a 128K context window. Priced at $4.00 per 1M blended tokens, it is worth considering for advanced voice tasks, but if you do not strictly require its native audio capabilities, the cost may not be justified compared to standard text models.</p>
       
       <div class="tags">
         <span class="tag">mid-price</span><span class="tag">open weights</span><span class="tag">audio out</span>
@@ -793,7 +793,7 @@
 </section>
 
 <section class="radar-section" id="open-weights">
-  <h2>Open weights (self-hostable) <a class="anchor" href="#open-weights">#open-weights</a></h2>
+  <h2 id="open-weights"><a href="#open-weights">Open weights (self-hostable)</a> <span class="anchor">#open-weights</span></h2>
   <p class="sub">Weights you can download and run on your own box. Costs you GPU time, not tokens.</p>
   
   <div class="radar-picks">
@@ -807,7 +807,7 @@
         
       </div>
       
-      <p class="verdict">Xiaomi: MiMo-V2.6-Flash offers a massive 1.1M context window and an arena rating of 1452 at a modest blended price of $0.168 per million tokens. It is well-suited for self-hosted workloads requiring deep context processing, though its low popularity score of 46 suggests limited community tooling for homelab deployment.</p>
+      <p class="verdict">xiaomi&#x2F;mimo-v2.6-flash is a mixture-of-experts open-weights model offering a 1.1M context window and an arena rating of 1452 at a blended price of $0.168 per 1M tokens. It is well-suited for broad self-hosted homelab workloads requiring massive context lengths. However, its low popularity score of 46 means community tooling and deployment recipes may be less mature.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">10 providers</span>
@@ -837,7 +837,7 @@
         
       </div>
       
-      <p class="verdict">Z.ai: GLM 5.3 Flash delivers strong performance with a 1472 arena rating and broad provider support for efficient coding and long-horizon tasks. At $0.220 per million blended tokens, it is worth the money if you need a reliable multimodal model, but cheaper options exist if you do not require its specific agentic capabilities.</p>
+      <p class="verdict">z-ai&#x2F;glm-5.3-flash is a native multimodal open-weights model priced at $0.220 per 1M blended tokens with an arena rating of 1472 and a 1.0M context window. It excels at efficient coding tasks and long-horizon agent operations while maintaining strong long-context behavior. Given its wide availability across 38 providers and a popularity score of 58, it is worth the slightly higher price for homelab operators needing reliable tool use.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">open weights</span><span class="tag">long context</span><span class="tag">38 providers</span>
@@ -867,7 +867,7 @@
         
       </div>
       
-      <p class="verdict">inclusionAI: Ling 3.1 Flash is an unrated mixture-of-experts model priced economically at $0.105 per million blended tokens with a 262K context window. It is not worth the money for general production use due to its very low popularity score of 7 and lack of community benchmarks, but it may interest experimenters.</p>
+      <p class="verdict">inclusionai&#x2F;ling-3.1-flash is a massive mixture-of-experts open-weights model with 560B total parameters, available at a low blended price of $0.105 per 1M tokens and a 262K context window. It is an affordable option for large-scale self-hosting experiments, but its unrated arena status and minimal popularity score of 7 make it a risky choice for production homelab use.</p>
       
       <div class="tags">
         <span class="tag">cheap</span><span class="tag">open weights</span>
@@ -893,7 +893,7 @@
 </section>
 
 <section class="radar-section" id="image-video">
-  <h2>Image &amp; video <a class="anchor" href="#image-video">#image-video</a></h2>
+  <h2 id="image-video"><a href="#image-video">Image &amp; video</a> <span class="anchor">#image-video</span></h2>
   <p class="sub">Priced per generation, not per token. A different kind of budget.</p>
   
   <div class="radar-picks">
@@ -907,7 +907,7 @@
         
       </div>
       
-      <p class="verdict">google&#x2F;gemini-3.1-flash-lite-image is Google&#x27;s fastest and most cost-efficient image model at just $0.500&#x2F;1M blended tokens, making it great for high-velocity developer pipelines and rapid-fire visual exploration. It may not be worth the money if you require maximum arena performance, as its rating sits lower at 1313 compared to heavier alternatives.</p>
+      <p class="verdict">google&#x2F;gemini-3.1-flash-lite-image is Google&#x27;s fastest and most cost-efficient image model at just $0.500&#x2F;1M blended tokens, making it great for high-velocity developer pipelines and rapid-fire visual exploration. However, with an arena rating of 1313, it is not worth the money if your homelab tasks require top-tier artistic fidelity or complex reasoning.</p>
       
       <div class="tags">
         <span class="tag">mid-price</span><span class="tag">image out</span>
@@ -937,7 +937,7 @@
         
       </div>
       
-      <p class="verdict">google&#x2F;gemini-nano-banana-2.1 delivers improved product recontextualization and a higher arena rating of 1426 for $2.70&#x2F;1M blended tokens. It is well-suited for users needing stronger Flash-tier image generation and editing capabilities than the lite variant offers.</p>
+      <p class="verdict">google&#x2F;gemini-nano-banana-2.1 delivers an improved arena rating of 1426 on the Flash tier, making it a solid choice for image generation and product recontextualization workflows. At $2.70&#x2F;1M blended tokens, it might not be worth the money if you are running tight-budget batch jobs where the cheaper lite alternative suffices.</p>
       
       <div class="tags">
         <span class="tag">mid-price</span><span class="tag">web search</span><span class="tag">image out</span>
@@ -967,7 +967,7 @@
         
       </div>
       
-      <p class="verdict">openai&#x2F;gpt-5.4-image-2 achieves the top arena rating of 1461 and combines advanced multimodal reasoning with state-of-the-art image generation for $9.40&#x2F;1M blended tokens. However, it is not worth the money for simple or budget-constrained visual tasks given its significantly higher price point.</p>
+      <p class="verdict">openai&#x2F;gpt-5.4-image-2 achieves the highest arena rating of 1461 in this lineup, combining advanced multimodal reasoning with state-of-the-art image generation for complex workflows. At $9.40&#x2F;1M blended tokens, it is definitely not worth the money for simple, everyday text-to-image tasks that do not utilize its broader coding and reasoning capabilities.</p>
       
       <div class="tags">
         <span class="tag">premium</span><span class="tag">open weights</span><span class="tag">web search</span><span class="tag">image out</span>
@@ -994,7 +994,7 @@
 
 
 <section class="radar-section" id="new">
-  <h2>New this week <a class="anchor" href="#new">#new</a></h2>
+  <h2 id="new-title"><a href="#new">New this week</a> <span class="anchor">#new</span></h2>
   <p class="sub">Models that appeared on OpenRouter since the last issue.</p>
   
   <ul class="radar-list">
@@ -1022,7 +1022,7 @@
 </section>
 
 <section class="radar-section" id="prices">
-  <h2>Price watch <a class="anchor" href="#prices">#prices</a></h2>
+  <h2 id="prices-title"><a href="#prices">Price watch</a> <span class="anchor">#prices</span></h2>
   <p class="sub">Price changes since the last issue, biggest move first.</p>
   
   
@@ -1032,7 +1032,7 @@
 </section>
 
 <section class="radar-section" id="news">
-  <h2>What people are talking about <a class="anchor" href="#news">#news</a></h2>
+  <h2 id="news-title"><a href="#news">What people are talking about</a> <span class="anchor">#news</span></h2>
   <p class="sub">Community and vendor chatter from the last seven days.</p>
   
   <ul class="radar-list">
@@ -1049,7 +1049,7 @@
     
     <li>
       <span class="title"><a href="https:&#x2F;&#x2F;www.anthropic.com&#x2F;research&#x2F;formal-verification">LLMs are making formal software verification feasible at a much larger scale</a></span>
-      <span class="src">Hacker News &middot; 445 points</span>
+      <span class="src">Hacker News &middot; 449 points</span>
     </li>
     
     <li>
@@ -1073,13 +1073,18 @@
     </li>
     
     <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;www.phoronix.com&#x2F;news&#x2F;LKML-New-Trend-Vulnerabilities">Several Linux kernel vulnerabilities accidentally posted to public mailing list</a></span>
+      <span class="src">Hacker News &middot; 250 points</span>
+    </li>
+    
+    <li>
       <span class="title"><a href="https:&#x2F;&#x2F;rumple.github.io&#x2F;blog&#x2F;2026&#x2F;10&#x2F;20&#x2F;asking-llm-for-confidence.html">Using LLM for confidence scoring is a bad idea</a></span>
       <span class="src">Hacker News &middot; 224 points</span>
     </li>
     
     <li>
       <span class="title"><a href="https:&#x2F;&#x2F;github.com&#x2F;dsmurrell&#x2F;onkey">Show HN: OnKey – I&#x27;m a bad singer, so I built an app to show where I&#x27;m off-key</a></span>
-      <span class="src">Hacker News &middot; 219 points</span>
+      <span class="src">Hacker News &middot; 221 points</span>
     </li>
     
     <li>
@@ -1089,7 +1094,7 @@
     
     <li>
       <span class="title"><a href="https:&#x2F;&#x2F;nitter.click&#x2F;AikidoSecurity&#x2F;status&#x2F;2113759110625906950?__galadriel=lPmlGl9id4oAd5UeBwMhlYKArHyr6lR2IDGujPwB5HV2kQ1aLoPWFd5A9sGuzNcmrp8fUso8qygmHcKTDZ8MNHWqQ3bDJcycV87xp_0VypzQLYj6O_RRHlZuQqj33oASGY2YLSoAiMjeOZN40h7Stf8AG7DPrGZbAPVKUXy36HoMudRbvwF3_r2uYNmfJMhpKzywQDM6Ab8">Evolving Threat: http2shell is an RCE in Node, Python, and more</a></span>
-      <span class="src">Hacker News &middot; 142 points</span>
+      <span class="src">Hacker News &middot; 158 points</span>
     </li>
     
     <li>
@@ -1105,6 +1110,11 @@
     <li>
       <span class="title"><a href="https:&#x2F;&#x2F;blog.alexewerlof.com&#x2F;p&#x2F;rise-and-fall-of-jev-eval-hype-vs-llm">The rise and fall of Jev hype</a></span>
       <span class="src">Hacker News &middot; 89 points</span>
+    </li>
+    
+    <li>
+      <span class="title"><a href="https:&#x2F;&#x2F;swurf.org&#x2F;">Show HN: Swurf – Swipe through the real web</a></span>
+      <span class="src">Hacker News &middot; 70 points</span>
     </li>
     
     <li>
@@ -1139,22 +1149,12 @@
     
     <li>
       <span class="title"><a href="https:&#x2F;&#x2F;twitter.com&#x2F;ZelenskyyUa&#x2F;status&#x2F;2113677048354947180">Volodymyr Zelenskyy: The speed limits on Starlink and Starshield are still there</a></span>
-      <span class="src">Hacker News &middot; 44 points</span>
+      <span class="src">Hacker News &middot; 45 points</span>
     </li>
     
     <li>
       <span class="title"><a href="https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=">Ask HN: Dark mode for HN please? (2026)</a></span>
       <span class="src">Hacker News &middot; 31 points</span>
-    </li>
-    
-    <li>
-      <span class="title"><a href="https:&#x2F;&#x2F;olivergrabner.com&#x2F;research&#x2F;pokemon&#x2F;">LLM agents play Pokemon showdown</a></span>
-      <span class="src">Hacker News &middot; 31 points</span>
-    </li>
-    
-    <li>
-      <span class="title"><a href="https:&#x2F;&#x2F;bloffy.co&#x2F;en">Show HN: I built a Markdown and raw HTML blog platform scoring 99 on PageSpeed</a></span>
-      <span class="src">Hacker News &middot; 29 points</span>
     </li>
     
   </ul>
@@ -1163,7 +1163,7 @@
 
 
 <section class="radar-section" id="papers">
-  <h2>Reading <a class="anchor" href="#papers">#papers</a></h2>
+  <h2 id="papers-title"><a href="#papers">Reading</a> <span class="anchor">#papers</span></h2>
   <p class="sub">Today's papers from the HuggingFace daily feed.</p>
   <ul class="radar-list">
     
@@ -1232,7 +1232,7 @@
 
 
 <section class="radar-section" id="method">
-  <h2>How this was made <a class="anchor" href="#method">#method</a></h2>
+  <h2 id="method-title"><a href="#method">How this was made</a> <span class="anchor">#method</span></h2>
   <div class="radar-method">
     <h3>Sources</h3>
     <ul class="sources">
@@ -1245,7 +1245,7 @@
       
       <li><span class="dot "></span><span>HuggingFace</span><span class="status">10 papers</span></li>
       
-      <li><span class="dot "></span><span>Hacker News</span><span class="status">110 items</span></li>
+      <li><span class="dot "></span><span>Hacker News</span><span class="status">112 items</span></li>
       
       <li><span class="dot bad"></span><span>Reddit</span><span class="status">disabled (blocked)</span></li>
       
