@@ -28,6 +28,6 @@ shape of it, `docs/` for detail.
   GitHub Actions workflow does the same on push.
 - Root-relative links (`/blog.html`) are correct for the site
   itself; use absolute URLs only for other hosts (the radar at
-  `radar.dennis-verdonschot.nl`, Typetutor at `typetutor.org`).
+  `ai-radar.dennis-verdonschot.nl`, Typetutor at `typetutor.org`).
 - After pushing to `origin`, run `scripts/sync-to-github.sh` (or
   wait for the timer) so GitHub Pages redeploys.
