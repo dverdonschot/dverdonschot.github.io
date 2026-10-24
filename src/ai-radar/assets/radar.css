@@ -327,6 +327,12 @@
   align-items: baseline;
 }
 
+.radar-method .sources .status {
+  margin-left: auto;
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+}
+
 .radar-method .dot {
   width: 6px;
   height: 6px;
