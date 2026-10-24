@@ -385,3 +385,55 @@
     color: var(--color-text-secondary);
   }
 }
+
+/* ---------- hero digest: the one-line weekly summary ---------- */
+
+.radar-hero .digest {
+  max-width: 46rem;
+  margin-bottom: var(--space-md);
+  line-height: var(--line-height-relaxed);
+}
+
+/* ---------- chapter bar ---------- */
+
+.contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm) var(--space-md);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-lg);
+}
+
+.contents a {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+
+.contents a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* ---------- section titles are links; # appears on hover ---------- */
+
+.radar-section h2 a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.radar-section h2 a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.radar-section h2 .anchor {
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.radar-section h2:hover .anchor {
+  opacity: 1;
+}
