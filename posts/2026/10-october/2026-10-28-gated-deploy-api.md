@@ -4,7 +4,7 @@ date: 2026-10-28
 description: How I built a small HTTP API that lets an AI agent rebuild my NixOS homelab server from a branch it just pushed - without ever handing it a shell, a sudo rule, or a file on the server.
 tags: [NixOS, AI Agents, Infrastructure, Security]
 image: /images/blog/2026/gated-deploy-hero.webp
-imageAlt: Illustration of a robot holding a glowing Deploy button in front of a locked gate marked Gated Deploy, with a NixOS Homelab server behind it
+imageAlt: Illustration of a robot reaching for a glowing red Deploy button in front of a padlocked gate marked Gated Deploy, with a NixOS Homelab server rack behind the fence
 ---
 
 My homelab runs on NixOS, and I keep its configuration in a flake on my own Forgejo instance. 
