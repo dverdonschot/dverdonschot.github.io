@@ -7,21 +7,37 @@ image: /images/blog/2026/gated-deploy-hero.webp
 imageAlt: Illustration of a robot reaching for a glowing red Deploy button in front of a padlocked gate marked Gated Deploy, with a NixOS Homelab server rack behind the fence
 ---
 
-My homelab runs on NixOS, and I keep its configuration in a flake on my own Forgejo instance. 
+My homelab runs on [NixOS](https://nixos.org/), and I keep its configuration in a [flake](https://nix.dev/manual/nix/latest/command-ref/new-cli/nix3-flake.html) on my own [Forgejo](https://forgejo.org/) instance.
 
-My development agents run on a dedicated VPS, they have several tools to test the Nix code that is used to configure my homelab server before they deploy it, command line tools to build and evaluate the syntax, packages and more. To prevent a lot of mistakes I also made an MCP server available that makes Nix packages, options, examples, documentation and more available to the agents.
+My development agents run on a dedicated VPS, they have several tools to test the Nix code that is used to configure my homelab server before they deploy it, command line tools to build and evaluate the syntax, packages and more. To prevent a lot of mistakes I also made an [MCP](https://modelcontextprotocol.io/) server available that makes Nix packages, [options](https://search.nixos.org/options), examples, documentation and more available to the agents.
 
 The agents could build new features and upload the code to my Forgejo instance for review and deployment.
 
 For a long time the rule in that repository's `AGENTS.md` was simple and absolute:
 
-> **AI commits, human deploys.** The AI never runs `nixos-rebuild switch` on a host, it cannot even ssh to the homelab host. Push the code to Forgejo; the human activates on the homelab server.
+> **AI commits, human deploys.** The AI never runs [`nixos-rebuild switch`](https://search.nixos.org/packages?query=nixos-rebuild) on a host, it cannot even ssh to the homelab host. Push the code to Forgejo; the human activates on the homelab server.
 
 That rule existed for a good reason. There are private files, PII data, and also deploy secrets and API keys that I don't want in the context window of an AI.
 
 But the rule had a cost. Every change I made to the server was a change I had to make by hand, often rebuilding multiple times. Deploy or service logs had to be copied manually, watching a 3 minute build. The agent could write the change and push it; it could not finish the job.
 
 So I built the missing piece: **a gated deploy API**. It is a small service that lives on the homelab server, exposes an HTTP endpoint over my tailnet, and does exactly one thing: run *pre-approved* commands and NixOS actions. Allowing the agent to push the code to Forgejo, and then use the authenticated API to check the build, and if correct apply it. If the build fails it will receive the error message.
+
+### A few words on the vocabulary
+
+If some of the terms below are new to you, these are the short versions:
+
+| Term | What it means |
+|---|---|
+| [Nix](https://nix.dev/) | a package manager and build system - it builds software from a declarative description, so the same input always gives the same output |
+| [NixOS](https://nixos.org/) | a Linux distribution built on Nix, where the whole system is described in one config file |
+| [flake](https://nix.dev/manual/nix/latest/command-ref/new-cli/nix3-flake.html) | a folder of Nix files describing a whole system or project, with its inputs pinned to exact versions |
+| [nixpkgs](https://github.com/NixOS/nixpkgs) | the enormous collection of packages NixOS is built from |
+| [module](https://nixos.org/manual/nixos/stable/#sec.module-system) | the unit of configuration in NixOS - it declares options, and you set them |
+| [store path](https://nix.dev/manual/nix/latest/store/store-path.html) | the immutable path in `/nix/store` where a built result lands |
+| [systemd](https://systemd.io/) | the service manager that runs the processes on the server |
+| [MCP](https://modelcontextprotocol.io/) | Model Context Protocol - a standard way for an AI agent to call tools that live outside the model |
+| [Tailnet](https://tailscale.com/kb/1136/tailnet) | a private network between your own machines, reachable as if they were local |
 
 
 ## The shape of it
@@ -30,9 +46,9 @@ So I built the missing piece: **a gated deploy API**. It is a small service that
 
 There are three moving pieces, and they are deliberately not merged.
 
-**The deploy surface** is the API service. It runs on the homelab server, listens on a loopback port that is published to the tailnet by Tailscale Serve, and it is the only thing that can cause a rebuild. It cannot look anything up.
+**The deploy surface** is the API service. It runs on the homelab server, listens on a loopback port that is published to the [tailnet](https://tailscale.com/kb/1136/tailnet) by [Tailscale Serve](https://tailscale.com/kb/1242/tailscale-serve), and it is the only thing that can cause a rebuild. It cannot look anything up.
 
-**The allowlist** is a file generated by Nix at build time. It is the policy: the exact set of commands that may run, and on which host. The service reads it; the root helper reads it; the agent cannot.
+**The allowlist** is a file generated by [Nix](https://nix.dev/) at build time. It is the policy: the exact set of commands that may run, and on which host. The service reads it; the root helper reads it; the agent cannot.
 
 **The Flake.nix** is a way to deploy the app that is Nix native. It allows me to load the app, and configure the allowlist. My nix configuration can pull the flake code and deploy the app.
 
@@ -74,7 +90,7 @@ Three things follow from writing it this way.
 
 **The set of things the agent can do is visible in a `git diff`.** Adding a capability is a change to a Nix file, reviewed like any other change to the server's configuration. The gate is not a runtime permission dialog that someone can click past; it is code.
 
-**The paths are pinned by the flake.** `${pkgs.nix}/bin/nix` is a store path, not a name resolved through a mutable `PATH`. Combined with the explicit `PATH` in the argv, that is what makes the job reproducible - and, as I found the hard way, necessary: the job runs in a systemd unit, not in a shell, so it inherits systemd's default `PATH`, and `nixos-rebuild` calls `test`, `rm` and `systemd-run` *by name*. Without a `PATH` of its own, a rebuild completes successfully and then dies at the activation step with `No such file or directory: 'test'`. Your own shell hides this, because `test` is a shell builtin.
+**The paths are pinned by the flake.** `${pkgs.nix}/bin/nix` is a [store path](https://nix.dev/manual/nix/latest/store/store-path.html), not a name resolved through a mutable `PATH`. Combined with the explicit `PATH` in the argv, that is what makes the job reproducible - and, as I found the hard way, necessary: the job runs in a [systemd unit](https://www.freedesktop.org/software/systemd/man/latest/systemd.service.html), not in a shell, so it inherits systemd's default `PATH`, and `nixos-rebuild` calls `test`, `rm` and `systemd-run` *by name*. Without a `PATH` of its own, a rebuild completes successfully and then dies at the activation step with `No such file or directory: 'test'`. Your own shell hides this, because `test` is a shell builtin.
 
 ## What the request actually contains
 
@@ -86,17 +102,17 @@ The API takes a host, an action and a branch. That is the entire request body:
 
 The agent picks the branch - it just pushed it, after all. It picks the action from the list the server publishes, and it cannot pick anything else. If it asks for an action that is not in the allowlist, the server answers `404` and nothing happens. There is no default action and no fallthrough.
 
-The branch name is validated twice: once with git's own `check-ref-format`, and once against a stricter allowlist of characters that cannot mean anything to a shell. That second layer is not paranoia about a shell I do not use - it is about not having to reason about the difference between "we validated it" and "we validated it and it happens to be harmless".
+The branch name is validated twice: once with git's own [`check-ref-format`](https://git-scm.com/docs/git-check-ref-format), and once against a stricter allowlist of characters that cannot mean anything to a shell. That second layer is not paranoia about a shell I do not use - it is about not having to reason about the difference between "we validated it" and "we validated it and it happens to be harmless".
 
 ## The privilege model: one helper, one sudoers line
 
 The service runs as an unprivileged dedicated user. It is reachable over the network, so it must not be root, but `nixos-rebuild switch` refuses to run as anything else. Something has to bridge that gap, and the bridging is where all the risk lives.
 
-There is exactly one privileged program on the server: a root-owned helper at `/usr/local/libexec/gated-deploy-job`. The service may run it, through a single sudoers rule:
+There is exactly one privileged program on the server: a root-owned helper at `/usr/local/libexec/gated-deploy-job`. The service may run it, through a single [sudoers](https://www.sudo.ws/docs/man/sudoers.man/) rule:
 
 ```text
 gated-deploy ALL=(root) NOPASSWD: \
-  /usr/local/libexec/gated-deploy-job ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+  /usr/local/libexec/gated-deploy-job ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
 ```
 
 The path is literal and the argument is a regular expression, which is not a detail: sudo matches the path and the arguments separately, and without the trailing `$` a path rule matches by prefix - so a rule for `gated-deploy-job` would also match `gated-deploy-job-evil`, and sudo would then run the path the *caller* typed.
@@ -142,7 +158,7 @@ The server is [utensils/mcp-nixos](https://github.com/utensils/mcp-nixos), wired
 
 A large part of what makes an agent usable on a NixOS box is not the deploying. It is not writing `services.foo.bar = true` when the option is actually `services.foo.baz`, or inventing a package attribute that has not existed for two years.
 
-That is what the MCP lookup surface is for. It exposes two tools: one that searches NixOS, Home Manager, nix-darwin, flakes, FlakeHub and the NixOS wiki for options and packages, and one that answers version-history questions from NixHub - "which nixpkgs commit shipped this version, and under which attribute path".
+That is what the MCP lookup surface is for. It exposes two tools: one that searches [NixOS](https://nixos.org/), [Home Manager](https://github.com/nix-community/home-manager), [nix-darwin](https://github.com/nix-darwin/nix-darwin), flakes, [FlakeHub](https://flakehub.com/) and the [NixOS wiki](https://discourse.nixos.org/) for options and packages, and one that answers version-history questions from [NixHub](https://nixhub.io/) - "which nixpkgs commit shipped this version, and under which attribute path".
 
 ```text
 nix    {"action": "search", "query": "gated deploy", "type": "options"}
@@ -154,7 +170,7 @@ nix_versions {"package": "nix", "version": "2.24.11"}
 
 The gate would be pointless if the first test of a change happened on the live machine. The workflow is a ladder, and each rung is cheaper than the one below it.
 
-**Locally, in the config repository:** `nix flake check` builds the flake, which builds the package, which runs the whole test suite - a hundred and eleven tests across the shared schemas, the root helper's flow with every external command stubbed, the HTTP surface end to end, and the client's configuration and job ledger.
+**Locally, in the config repository:** [`nix flake check`](https://nix.dev/manual/nix/latest/command-ref/new-cli/nix3-flake-check.html) builds the flake, which builds the package, which runs the whole test suite - a hundred and eleven tests across the shared schemas, the root helper's flow with every external command stubbed, the HTTP surface end to end, and the client's configuration and job ledger.
 
 **The end-to-end smoke test:** a script that runs the *real* chain - client, HTTP, service, `sudo`, root helper, `git`, a real transient systemd unit - against a local git remote. It needs root because it installs a helper, a sudoers rule and a system user, and it removes everything it created on the way out, including on failure. When it fails, it tells you which link in the chain broke.
 
@@ -206,7 +222,7 @@ A few things I want to be straight about.
 
 **Deploying a branch is remote code execution, by design.** The allowlist limits *which command runs*, not *what that command builds*. The branch's Nix expressions are evaluated and built as root on the server. The owner of this setup - me - has accepted that. If you want a different trade-off, this is the line to argue about.
 
-**There is no rollback action.** No `--rollback`, no force-reboot equivalent in the allowlist. Recovery is booting the previous systemd-boot generation on the console, which is a human operation. A `switch` that exits 0 but leaves the host in a bad state cannot be undone from the agent side, and inventing one is out of scope.
+**There is no rollback action.** No `--rollback`, no force-reboot equivalent in the allowlist. Recovery is booting the previous [systemd-boot](https://systemd.io/BOOT/) generation on the console, which is a human operation. A `switch` that exits 0 but leaves the host in a bad state cannot be undone from the agent side, and inventing one is out of scope.
 
 **Any branch is deployable.** There is no per-deploy human approval step. Authentication answers "is this the client?"; the allowlist answers "is this command allowed?"; the decision that no human sits between them is a third, separate choice, and it is mine to make. It is a real risk, and it is the reason I would not deploy this design to a server whose failure I care about more than my homelab's.
 
